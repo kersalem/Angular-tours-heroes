@@ -1,0 +1,5 @@
+
+// Générer nvo composant
+//ng generate component heroes
+
+// Démarrer serveur : ng serve --open
