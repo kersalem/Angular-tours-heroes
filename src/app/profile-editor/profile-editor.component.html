@@ -1,0 +1,16 @@
+<p>profile-editor works!</p>
+
+
+<form [formGroup]="profileForm">
+  <label>
+    First Name:
+    <input type="text" formCOntrolName="firstName">
+  </label>
+  <label>
+    Last Nameeeeeeeeeeeeeeeee:
+    <input type="text" formCOntrolName="lastName">
+  </label>
+</form>
+<form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+  <button type="submit" [disabled]="!profileForm.valid">Submit</button>
+</form>
