@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { HeroService } from '../service/hero.service';
+import { Hero } from '../data/Hero';
 
 @Component({
   selector: 'app-name-editor',
@@ -7,11 +9,34 @@ import { FormControl } from '@angular/forms';
   styleUrls: ['./name-editor.component.css']
 })
 
-export class NameEditorComponent {
+export class NameEditorComponent implements OnInit {
+  heroes: Hero[];
+  selectedHero: Hero;
+
+  constructor(private heroService: HeroService) {}
   name = new FormControl('');
 
-  updateName() {
-    this.name.setValue('toto');
+  OnInit() {
+    this.getHeroes();
+  }
+  /*  updateName() {
+      this.name.setValue('toto');
+    }*/
+
+  onSelect(hero: Hero): void {
+    this.selectedHero = hero;
+  }
+
+  getHeroes(): void {
+    this.heroService.getHeroes()
+      .subscribe(heroes => this.heroes = heroes);
+  }
+
+  addName(): void {
+  this.heroService.addHero();
+  }
+
+  ngOnInit(): void {
   }
 }
 
