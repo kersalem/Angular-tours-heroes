@@ -32,8 +32,8 @@ export class NameEditorComponent implements OnInit {
       .subscribe(heroes => this.heroes = heroes);
   }
 
-  addName(): void {
-  this.heroService.addHero();
+  addName(value: any): void {
+  this.heroService.addHero(value);
   }
 
   ngOnInit(): void {

@@ -1,1 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
+section {
+  padding: 50px 0;
+}
+nav-item {
+  padding: 10px;
+  height: auto;
+}
+.btn-primary{
+  margin: 20px 0;
+}

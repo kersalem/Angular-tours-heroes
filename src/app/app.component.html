@@ -1,10 +1,29 @@
-<h1>{{ title }}</h1>
 <!--The <router-outlet> tells the router where to display routed views.-->
-<nav>
-  <a routerLink="/dashboard">Dashboard</a>
-  <a routerLink="/heroes">Heroes</a>
-  <a routerLink="/nameEditor">Créer héro</a>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-dark" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand"  title="Title" routerLink="/heroes" style="color: #161616 !important;">Tour of heroes</a>
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      Menu
+      <i class="fas fa-bars"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a routerLink="/dashboard" class="nav-link" title="dashboard" style="color: #161616 !important;">Dashboard</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/heroes" title="ListHeroes" style="color: #161616 !important;">Liste héros</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/nameEditor" title="creerHero" style="color: #161616 !important;">Créer héro</a>
+        </li>
+      </ul>
+    </div>
+  </div>
 </nav>
+
+
 <router-outlet></router-outlet>
 <!--
 <app-messages></app-messages>
