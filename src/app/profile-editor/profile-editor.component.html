@@ -2,12 +2,24 @@
 
 <form [formGroup]="profileForm">
   <label>
-    First Name:
-    <input type="text" formControlName="firstName">
+    Nom :
+    <input type="text" formControlName="name">
   </label>
-<!--  <label>
-    Last Nameeeeeeeeeeeeeeeee:
-    <input type="text" formControlName="lastName">
-  </label>-->
+  <label>
+    Attaque :
+    <input type="text" formControlName="attaque">
+  </label>
+  <label>
+    Esquive:
+    <input type="text" formControlName="esquive">
+  </label>
+  <label>
+    Degats :
+    <input type="text" formControlName="degats">
+  </label>
+  <label>
+    Point de vie:
+    <input type="text" formControlName="pointDeVie">
+  </label>
   <button type="submit" (click)="saveHero()">Submit</button>
 </form>

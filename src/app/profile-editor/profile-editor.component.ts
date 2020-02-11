@@ -10,8 +10,11 @@ import { Hero } from '../data/Hero';
 })
 export class ProfileEditorComponent implements OnInit {
   profileForm = new FormGroup({
-    firstName: new FormControl(''),
-    lastName: new FormControl(''),
+    name: new FormControl(''),
+    attaque: new FormControl(''),
+    esquive: new FormControl(''),
+    degats: new FormControl(''),
+    pointDeVie: new FormControl(''),
   });
   heroes: Hero[];
   constructor(private heroService: HeroService) { }
@@ -26,7 +29,11 @@ export class ProfileEditorComponent implements OnInit {
   saveHero() {
     const hero = new Hero();
     // hero.id = '22';
-    hero.name = this.profileForm.get('firstName').value;
+    hero.name = this.profileForm.get('name').value;
+    hero.attaque = this.profileForm.get('attaque').value;
+    hero.esquive = this.profileForm.get('esquive').value;
+    hero.degats = this.profileForm.get('degats').value;
+    hero.pointDeVie = this.profileForm.get('pointDeVie').value;
     this.heroService.addHero(hero);
   }
 }
