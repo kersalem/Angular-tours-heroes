@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "tour-of-heroes-mk": {
+      "hosting": {
+        "angular-tour-of-heroes-kersalem": [
+          "tour-of-heroes-mk"
+        ]
+      }
+    }
+  }
+}
