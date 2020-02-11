@@ -2,20 +2,19 @@
   <div class="container">
     <div  class="row justify-content-center no-gutters mb-5 mb-lg-0">
       <div class="col-9">
-        <form>
+        <form [formControl]="">
           <h2>Créer votre héros</h2>
           <div class="form-group">
             <label>
               Name:
-              <input class="form-control" type="text" [formControl]="name">
+              <input class="form-control" type="text">
             </label>
           </div>
           <div class="form-group">
             <input  class="form-control" placeholder="name.value" />
-              {{ name.value }}
-
-          <button class="btn btn-primary" (click)="addName(name.value)">Ajouter héro</button>
+              {{ name }}
           </div>
+          <button class="btn btn-primary" type="submit" (click)="saveHero()">Ajouter héro</button>
         </form>
       </div>
     </div>

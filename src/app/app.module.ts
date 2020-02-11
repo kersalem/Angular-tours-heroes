@@ -10,8 +10,13 @@ import { MessagesComponent } from './messages/messages.component';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
-import { NameEditorComponent } from './name-editor/name-editor.component';
 import { ProfileEditorComponent } from './profile-editor/profile-editor.component';
+import {AngularFireModule} from '@angular/fire';
+import {AngularFireAnalyticsModule} from '@angular/fire/analytics';
+import {environment} from '../environments/environment';
+import {AngularFirestoreModule} from '@angular/fire/firestore';
+import {AngularFireAuthModule} from '@angular/fire/auth';
+import {AngularFireStorageModule} from '@angular/fire/storage';
 
 @NgModule({
   declarations: [
@@ -20,7 +25,6 @@ import { ProfileEditorComponent } from './profile-editor/profile-editor.componen
     HeroesComponent,
     HeroDetailComponent,
     MessagesComponent,
-    NameEditorComponent,
     ProfileEditorComponent
   ],
   imports: [
@@ -28,7 +32,13 @@ import { ProfileEditorComponent } from './profile-editor/profile-editor.componen
     FormsModule,
     AppRoutingModule,
     ReactiveFormsModule,
+    AngularFireModule.initializeApp(environment.firebase),
+   // AngularFireAnalyticsModule, // dynamically imports firebase/analytics
+    AngularFirestoreModule, // imports firebase/firestore, only needed for database features
+   // AngularFireAuthModule, // imports firebase/auth, only needed for auth features,
+   // AngularFireStorageModule // imports firebase/storage only needed for storage features
   ],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

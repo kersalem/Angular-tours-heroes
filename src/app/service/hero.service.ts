@@ -2,37 +2,116 @@ import { Injectable } from '@angular/core';
 
 import { Observable, of } from 'rxjs';
 
-import { Hero } from '../data/Hero';
-import { HEROES } from '../data/mock-heroes';
-import { MessageService } from './message.service';
+import { Hero } from '../data/hero';
+import {MessageService} from './message.service';
+
+import {AngularFirestore, DocumentChangeAction} from '@angular/fire/firestore';
+import { AngularFirestoreDocument } from '@angular/fire/firestore';
+import { AngularFirestoreCollection } from '@angular/fire/firestore';
+import {map} from 'rxjs/operators';
 
 
-@Injectable({ providedIn: 'root' })
+@Injectable({
+  providedIn: 'root'
+})
 export class HeroService {
-    name: any;
 
-  constructor(private messageService: MessageService) { }
-  heroes: Hero[];
+  private static url = 'heroes';
 
-  getHeroes(): Observable<Hero[]> {
-    // TODO: send the message _after_ fetching the heroes
+  constructor(private messageService: MessageService,
+              private db: AngularFirestore) { }
+
+  /*getHeroes(): Observable<Hero[]> {
     this.messageService.add('HeroService: fetched heroes');
-    return of(HEROES);
-  }
-  getHero(id: number): Observable<Hero> {
-    // TODO: send the message _after_ fetching the hero
-    this.messageService.add(`HeroService: fetched hero id=${id}`);
-    return of(HEROES.find(hero => hero.id === id));
-  }
-  addHero(item) {
-    HEROES.push(item);
-    const nom =  this.name.getValue(item);
-    /* console.log('this.heroes', this.heroes);
-     this.heroes.push(nom);*/
+    return this.db.collection<Hero>('heroes').valueChanges();
+  }*/
 
-    console.log('Je suis dans addHero()');
-    console.log('HEROES*************', HEROES);
-    console.log('item---------------------', nom);
+  // RÃ©cupÃ©ration des hÃ©ros
+  getHeroes(): Observable<Hero[]> {
 
+    //
+    return this.db.collection<Hero>(HeroService.url)
+      .snapshotChanges()
+      .pipe(
+        map(liste => {
+
+          // log
+          console.log('getHeroes()');
+
+          // Traitement de la liste
+          return liste.map(item => {
+
+            // Get document data
+            const data = item.payload.doc.data();
+
+            // New Hero
+            const hero = new Hero().fromJSON(data);
+
+            // Get document id
+            const id = item.payload.doc.id;
+            hero.id = id;
+
+            // log
+            console.log('   hero ' + id);
+
+            // Use spread operator to add the id to the document data
+            return hero;
+
+          });
+        })
+      );
+  }
+
+  // RÃ©cupÃ©ration d'un hÃ©ro en fonction de son id
+  getHero(id: string): Observable<Hero> {
+
+    // Return hero observable
+    return this.getHeroDocument(id).snapshotChanges()
+      .pipe(
+        map(item => {
+
+          // Get document data
+          const data = item.payload.data();
+
+          // New Hero
+          const hero = new Hero().fromJSON(data);
+          hero.id = id;
+
+          // log
+          console.log('getHero(' + id + ')');
+
+          // Use spread operator to add the id to the document data
+          return hero;
+        })
+      );
+  }
+
+  // Ajout d'un hÃ©ro
+  addHero(hero: Hero) {
+    this.db.collection<Hero>(HeroService.url).add(Object.assign({}, hero));
+  }
+
+  // Modification d'un hÃ©ro
+  updateHero(hero: Hero) {
+
+    // Update document
+    this.getHeroDocument(hero.id).update(Object.assign({}, hero));
+  }
+
+  // Suppression d'un hÃ©ro
+  deleteHero(id: string) {
+
+    // Delete the document
+    this.getHeroDocument(id).delete();
+  }
+
+
+  // CrÃ©ation du service Firebase en fonction de l'id du hÃ©ro
+  private getHeroDocument(id: string): AngularFirestoreDocument<Hero> {
+
+    // return document
+    return this.db.doc<Hero>(HeroService.url + `/` + id);
   }
 }
+
+

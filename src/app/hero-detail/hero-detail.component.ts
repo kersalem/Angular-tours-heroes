@@ -5,6 +5,7 @@ import { Location } from '@angular/common';
 import { Hero } from '../data/hero';
 import { HeroService } from '../service/hero.service';
 
+
 @Component({
   selector: 'app-hero-detail',
   templateUrl: './hero-detail.component.html',
@@ -24,7 +25,7 @@ export class HeroDetailComponent implements OnInit {
   }
 
   getHero(): void {
-    const id = +this.route.snapshot.paramMap.get('id');
+    const id = this.route.snapshot.paramMap.get('id');
     this.heroService.getHero(id)
       .subscribe(hero => this.hero = hero);
   }
@@ -32,4 +33,9 @@ export class HeroDetailComponent implements OnInit {
   goBack(): void {
     this.location.back();
   }
+
+/*  save() {
+    this.heroService.updateHero(this.hero);
+  }*/
 }
+

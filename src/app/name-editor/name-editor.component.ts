@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import {FormControl, FormGroup} from '@angular/forms';
 import { HeroService } from '../service/hero.service';
 import { Hero } from '../data/Hero';
 
@@ -10,6 +10,9 @@ import { Hero } from '../data/Hero';
 })
 
 export class NameEditorComponent implements OnInit {
+  formHero = new FormGroup({
+    name: new FormControl(''),
+  });
   heroes: Hero[];
   selectedHero: Hero;
 
@@ -34,6 +37,12 @@ export class NameEditorComponent implements OnInit {
 
   addName(value: any): void {
   this.heroService.addHero(value);
+  }
+  saveHero() {
+    const hero = new Hero();
+    // hero.id = '22';
+    hero.name = this.formHero.get('name').value;
+    this.heroService.addHero(hero);
   }
 
   ngOnInit(): void {

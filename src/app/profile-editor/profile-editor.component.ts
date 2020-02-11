@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
+import {Hero} from '../data/Hero';
 
 @Component({
   selector: 'app-profile-editor',
@@ -11,13 +12,17 @@ export class ProfileEditorComponent implements OnInit {
     firstName: new FormControl(''),
     lastName: new FormControl(''),
   });
-  onSubmit() {
-    console.warn(this.profileForm.value);
-  }
 
   constructor() { }
 
   ngOnInit(): void {
   }
+
+/*  saveHero() {
+    const hero = new Hero();
+    // hero.id = '22';
+    hero.name = this.formHero.get('name').value;
+    this.heroService.addHero(hero);
+  }*/
 
 }

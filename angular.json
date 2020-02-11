@@ -118,8 +118,13 @@
               "devServerTarget": "angular-tour-of-heroes-kersalem:serve:production"
             }
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {}
         }
       }
-    }},
+    }
+  },
   "defaultProject": "angular-tour-of-heroes-kersalem"
 }
