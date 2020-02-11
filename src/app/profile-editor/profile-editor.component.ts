@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
-import {Hero} from '../data/Hero';
+import { HeroService } from '../service/hero.service';
+import { Hero } from '../data/Hero';
 
 @Component({
   selector: 'app-profile-editor',
@@ -12,17 +13,20 @@ export class ProfileEditorComponent implements OnInit {
     firstName: new FormControl(''),
     lastName: new FormControl(''),
   });
+  heroes: Hero[];
+  constructor(private heroService: HeroService) { }
 
-  constructor() { }
-
-  ngOnInit(): void {
+  getHeroes(): void {
+    this.heroService.getHeroes()
+      .subscribe(heroes => this.heroes = heroes);
   }
-
-/*  saveHero() {
+  ngOnInit(): void {
+    this.getHeroes();
+  }
+  saveHero() {
     const hero = new Hero();
     // hero.id = '22';
-    hero.name = this.formHero.get('name').value;
+    hero.name = this.profileForm.get('firstName').value;
     this.heroService.addHero(hero);
-  }*/
-
+  }
 }

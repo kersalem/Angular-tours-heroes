@@ -5,9 +5,9 @@
     First Name:
     <input type="text" formControlName="firstName">
   </label>
-  <label>
+<!--  <label>
     Last Nameeeeeeeeeeeeeeeee:
     <input type="text" formControlName="lastName">
-  </label>
-  <button type="submit" [disabled]="!profileForm.valid">Submit</button>
+  </label>-->
+  <button type="submit" (click)="saveHero()">Submit</button>
 </form>
