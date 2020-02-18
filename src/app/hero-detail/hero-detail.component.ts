@@ -13,7 +13,7 @@ import { HeroService } from '../service/hero.service';
 })
 export class HeroDetailComponent implements OnInit {
   hero: Hero;
-
+  rest: number;
   constructor(
     private route: ActivatedRoute,
     private heroService: HeroService,
@@ -33,6 +33,10 @@ export class HeroDetailComponent implements OnInit {
   goBack(): void {
     this.location.back();
   }
+
+/*  goCheckConstraint {
+     this.rest = 40 - (this.hero.attaque + this.hero.degats + this.hero.esquive + this.hero.pointDeVie);
+  }*/
 
 /*  save() {
     this.heroService.updateHero(this.hero);
