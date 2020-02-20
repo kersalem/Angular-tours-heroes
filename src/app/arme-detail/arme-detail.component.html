@@ -1,0 +1,13 @@
+<p>arme-detail works!</p>
+
+<div *ngIf="arme">
+
+  <h2>{{arme.name | uppercase}} Details arme</h2>
+  <div><span>id: </span>{{arme.id}}</div>
+  <div>
+    <label>name:
+      <input [(ngModel)]="arme.name" placeholder="name"/>
+    </label>
+  </div>
+
+</div>

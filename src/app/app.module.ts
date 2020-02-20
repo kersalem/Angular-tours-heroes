@@ -17,6 +17,8 @@ import {environment} from '../environments/environment';
 import {AngularFirestoreModule} from '@angular/fire/firestore';
 import {AngularFireAuthModule} from '@angular/fire/auth';
 import {AngularFireStorageModule} from '@angular/fire/storage';
+import { ArmesComponent } from './armes/armes.component';
+import { ArmeDetailComponent } from './arme-detail/arme-detail.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,9 @@ import {AngularFireStorageModule} from '@angular/fire/storage';
     HeroesComponent,
     HeroDetailComponent,
     MessagesComponent,
-    ProfileEditorComponent
+    ProfileEditorComponent,
+    ArmesComponent,
+    ArmeDetailComponent
   ],
   imports: [
     BrowserModule,

@@ -1,25 +1,26 @@
+
 <section id="projects" class="projects-section bg-light">
-<div class="col-12 container">
+  <div class="col-12 container">
     <div  class="row justify-content-start">
       <div class="col-6">
 
-        <h3>My Heroes</h3>
+        <h3>Les armes</h3>
 
         <table class="table table-dark">
           <tbody>
           <tr>
             <th scope="row">Id</th>
-            <td *ngFor="let hero of heroes">
-              <a routerLink="/detailHero/{{hero.id}}">
-                <span class="badge">{{hero.id}}</span>
+            <td *ngFor="let arme of armes">
+              <a routerLink="/detailArme/{{arme.id}}">
+                <span class="badge">{{arme.id}}</span>
               </a>
             </td>
           </tr>
           <tr>
             <th scope="row">Nom</th>
-            <td *ngFor="let hero of heroes">
-              <a routerLink="/detailHero/{{hero.id}}">
-                <span class="badge">{{hero.name}}</span>
+            <td *ngFor="let arme of armes">
+              <a routerLink="/detailArme/{{arme.id}}">
+                <span class="badge">{{arme.name}}</span>
               </a>
             </td>
           </tr>
@@ -29,3 +30,4 @@
     </div>
   </div>
 </section>
+<p>armes works!</p>
