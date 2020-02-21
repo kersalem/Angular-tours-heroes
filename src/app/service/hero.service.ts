@@ -90,11 +90,8 @@ export class HeroService {
   addHero(hero: Hero) {
     this.db.collection<Hero>(HeroService.url).add(Object.assign({}, hero));
   }
-
-  // Modification d'un hÃ©ro
+  // Modifier un héro
   updateHero(hero: Hero) {
-
-    // Update document
     this.getHeroDocument(hero.id).update(Object.assign({}, hero));
   }
 

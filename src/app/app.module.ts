@@ -10,7 +10,7 @@ import { MessagesComponent } from './messages/messages.component';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
-import { ProfileEditorComponent } from './profile-editor/profile-editor.component';
+import { HeroEditorComponent } from './hero-editor/hero-editor.component';
 import {AngularFireModule} from '@angular/fire';
 import {AngularFireAnalyticsModule} from '@angular/fire/analytics';
 import {environment} from '../environments/environment';
@@ -27,7 +27,7 @@ import { ArmeDetailComponent } from './arme-detail/arme-detail.component';
     HeroesComponent,
     HeroDetailComponent,
     MessagesComponent,
-    ProfileEditorComponent,
+    HeroEditorComponent,
     ArmesComponent,
     ArmeDetailComponent
   ],

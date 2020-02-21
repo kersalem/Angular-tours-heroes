@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
+import { ArmeService} from '../service/arme.service';
 import { Arme } from '../data/arme';
 import { ARMES } from '../data/mock-armes';
 
@@ -10,9 +11,17 @@ import { ARMES } from '../data/mock-armes';
 })
 export class ArmesComponent implements OnInit {
   armes = ARMES;
-  constructor() { }
+  selectedArme: Arme;
+  constructor(private armeService: ArmeService) { }
   ngOnInit() {
+    this.getArmes();
   }
+
+  getArmes(): void {
+   this.armeService.getArmes()
+      .subscribe(armes => this.armes = armes);
+  }
+
 
 }
 

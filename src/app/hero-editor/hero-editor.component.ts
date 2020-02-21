@@ -4,11 +4,11 @@ import { HeroService } from '../service/hero.service';
 import { Hero } from '../data/Hero';
 
 @Component({
-  selector: 'app-profile-editor',
-  templateUrl: './profile-editor.component.html',
-  styleUrls: ['./profile-editor.component.css']
+  selector: 'app-hero-editor',
+  templateUrl: './hero-editor.component.html',
+  styleUrls: ['./hero-editor.component.css']
 })
-export class ProfileEditorComponent implements OnInit {
+export class HeroEditorComponent implements OnInit {
   profileForm = new FormGroup({
     name: new FormControl(''),
     attaque: new FormControl(''),
