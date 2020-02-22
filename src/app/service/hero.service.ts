@@ -15,8 +15,8 @@ import {map} from 'rxjs/operators';
   providedIn: 'root'
 })
 export class HeroService {
-
   private static url = 'heroes';
+  idHero: string;
 
   constructor(private messageService: MessageService,
               private db: AngularFirestore) { }
@@ -91,8 +91,11 @@ export class HeroService {
     this.db.collection<Hero>(HeroService.url).add(Object.assign({}, hero));
   }
   // Modifier un héro
-  updateHero(hero: Hero) {
-    this.getHeroDocument(hero.id).update(Object.assign({}, hero));
+  updateHero(hero: Hero, updateHero: Hero) {
+    console.log("herooooooooooooo", hero);
+    console.log("updateHero", updateHero);
+    this.db.doc<Hero>(HeroService.url + `/` + hero.id).update(Object.assign({}, updateHero));
+
   }
 
   // Suppression d'un hÃ©ro

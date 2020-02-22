@@ -2,13 +2,13 @@
   <div class="container">
     <div  class="row justify-content-center no-gutters mb-5 mb-lg-0">
       <div class="col-9">
-        <h2>Editer</h2>
+        <h2>{{ (getHero) ? 'Editer ' + getHero.name :'Créer' }}</h2>
 
         <form [formGroup]="profileForm">
           <div class="form-group">
             <label>
               Nom :
-              <input type="text" formControlName="name" class="form-control" required>
+              <input type="text" [ngModel]="(getHero) ? getHero.name :'' " formControlName="name" class="form-control" required>
             </label>
           </div>
 

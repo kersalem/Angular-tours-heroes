@@ -6,24 +6,24 @@
           <h2>{{hero.name | uppercase}} Details</h2>
           <div><span>id: </span>{{hero.id}}</div>
             <div>
-              <label>name:
-                <input [(ngModel)]="hero.name" placeholder="name"/>
-              </label>
-              <label>name:
-                <input [(ngModel)]="hero.name" placeholder="attaque"/>
-              </label>
-              <label>name:
-                <input [(ngModel)]="hero.esquive" placeholder="esquive"/>
-              </label>
-              <label>name:
-                <input [(ngModel)]="hero.degats" placeholder="degats"/>
-              </label>
-              <label>name:
-                <input [(ngModel)]="hero.pointDeVie" placeholder="pointDeVie"/>
-              </label>
+              <div>name:
+                <div> {{ hero.name }}</div>
+              </div>
+              <div>attaque:
+                <div> {{ hero.attaque }}</div>
+              </div>
+              <div>esquive:
+                <div> {{ hero.esquive }}</div>
+              </div>
+              <div>degats:
+                <div> {{ hero.degats }}</div>
+              </div>
+              <div>Points de vie:
+                <div>
+                  {{ hero.pointDeVie }}
+                </div>
+              </div>
             </div>
-          <button class="btn brn-primary" (click)="updateHero()"> Enregistrer </button>
-        <button (click)="goBack()">go back</button>
         </div>
       </div>
     </div>

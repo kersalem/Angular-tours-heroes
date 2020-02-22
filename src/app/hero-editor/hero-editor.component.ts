@@ -18,25 +18,40 @@ export class HeroEditorComponent implements OnInit {
     pointDeVie: new FormControl(''),
   });
   heroes: Hero[];
-  constructor(private router: Router, private heroService: HeroService) { }
+  getHero: Hero;
 
+  constructor(private router: Router, private heroService: HeroService) { }
   getHeroes(): void {
     this.heroService.getHeroes()
       .subscribe(heroes => this.heroes = heroes);
   }
   ngOnInit(): void {
     this.getHeroes();
+    if (this.heroService.idHero) {
+      // subscribe voir le resultat de la fonction
+      // Recp données d'un hero à modifier
+      this.heroService.getHero(this.heroService.idHero).subscribe(value => this.getHero = value);
+      // REINITIALISER Le idHero
+      this.heroService.idHero = null;
+    }
   }
   saveHero() {
-
     const hero = new Hero();
-    // hero.id = '22';
+    // recup valeur du formulaire
     this.router.navigateByUrl('/heroes');
     hero.name = this.profileForm.get('name').value;
     hero.attaque = this.profileForm.get('attaque').value;
     hero.esquive = this.profileForm.get('esquive').value;
     hero.degats = this.profileForm.get('degats').value;
     hero.pointDeVie = this.profileForm.get('pointDeVie').value;
-    this.heroService.addHero(hero);
+
+    // Si hero à modifier
+    if (this.getHero) {
+      hero.id = this.getHero.id;
+      this.heroService.updateHero(this.getHero, hero);
+    } else {
+      // sinon l'ajoute
+      this.heroService.addHero(hero);
+    }
   }
 }

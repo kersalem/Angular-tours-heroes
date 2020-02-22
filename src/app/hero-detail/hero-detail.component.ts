@@ -35,7 +35,7 @@ export class HeroDetailComponent implements OnInit {
   }
 
   updateHero(): void {
-    this.heroService.updateHero(this.hero);
+    this.heroService.updateHero(this.hero, this.hero);
   }
 
 /*  goCheckConstraint {
