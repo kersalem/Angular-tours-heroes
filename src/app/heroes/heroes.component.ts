@@ -27,4 +27,8 @@ export class HeroesComponent implements OnInit {
     this.heroService.idHero = id;
     this.router.navigateByUrl('/heroEditor');
   }
+
+  deleteHero(id: string) {
+    this.heroService.deleteHero(id);
+  }
 }

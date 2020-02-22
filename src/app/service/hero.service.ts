@@ -100,9 +100,9 @@ export class HeroService {
 
   // Suppression d'un hÃ©ro
   deleteHero(id: string) {
-
     // Delete the document
-    this.getHeroDocument(id).delete();
+    this.db.doc<Hero>(HeroService.url + `/` + id).delete();
+
   }
 
 
