@@ -1,5 +1,6 @@
+import {Serializable} from './serializable';
 
-export class Arme {
-  id: number;
-  name: string;
+export class Arme extends Serializable {
+  id: string;
+  nom: string;
 }

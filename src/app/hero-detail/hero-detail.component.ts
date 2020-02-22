@@ -14,6 +14,7 @@ import { HeroService } from '../service/hero.service';
 export class HeroDetailComponent implements OnInit {
   hero: Hero;
   rest: number;
+
   constructor(
     private route: ActivatedRoute,
     private heroService: HeroService,

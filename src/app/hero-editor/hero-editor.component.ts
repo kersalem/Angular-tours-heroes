@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { HeroService } from '../service/hero.service';
 import { Hero } from '../data/Hero';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-hero-editor',
@@ -17,7 +18,7 @@ export class HeroEditorComponent implements OnInit {
     pointDeVie: new FormControl(''),
   });
   heroes: Hero[];
-  constructor(private heroService: HeroService) { }
+  constructor(private router: Router, private heroService: HeroService) { }
 
   getHeroes(): void {
     this.heroService.getHeroes()
@@ -27,8 +28,10 @@ export class HeroEditorComponent implements OnInit {
     this.getHeroes();
   }
   saveHero() {
+
     const hero = new Hero();
     // hero.id = '22';
+    this.router.navigateByUrl('/heroes');
     hero.name = this.profileForm.get('name').value;
     hero.attaque = this.profileForm.get('attaque').value;
     hero.esquive = this.profileForm.get('esquive').value;
