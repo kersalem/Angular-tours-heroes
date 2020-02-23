@@ -27,5 +27,9 @@ export class ArmesComponent implements OnInit {
     this.armeService.idArme = id;
     this.router.navigateByUrl('/armeEditor');
   }
+
+  deleteArme(id: string) {
+    this.armeService.deleteArme(id);
+  }
 }
 

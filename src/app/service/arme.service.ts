@@ -62,6 +62,9 @@ export class ArmeService {
   updateArme(arme: Arme, updateArme: Arme) {
     this.db.doc<Arme>(ArmeService.url + `/` + arme.id).update(Object.assign({}, updateArme));
   }
+  deleteArme(id: string) {
+    this.db.doc<Arme>(ArmeService.url + `/` + id).delete();
+  }
 
   private getArmeDocument(id: string): AngularFirestoreDocument<Arme> {
     return this.db.doc<Arme>(ArmeService.url + `/` + id);
