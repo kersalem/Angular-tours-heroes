@@ -1,1 +1,18 @@
-<p>arme-editor works!</p>
+<section id="projects" class="projects-section bg-light">
+  <div class="container">
+    <div  class="row justify-content-center no-gutters mb-5 mb-lg-0">
+      <div class="col-9">
+        <h2>{{ (getArme) ? 'Editer ' + getArme.nom :'Créer' }}</h2>
+        <form [formGroup]="profileForm">
+          <div class="form-group">
+            <label>
+              Nom :
+              <input type="text" [ngModel]="(getArme) ? getArme.nom :'' " formControlName="nom" class="form-control" required>
+            </label>
+          </div>
+          <button class="btn btn-primary" type="submit" (click)="saveArme()">Submit</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

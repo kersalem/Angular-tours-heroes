@@ -12,6 +12,7 @@ import {map} from 'rxjs/operators';
 export class ArmeService {
 
   private static url = 'armes';
+  idArme: string;
   constructor(private db: AngularFirestore) { }
 
   getArmes(): Observable<Arme[]> {
@@ -51,6 +52,15 @@ export class ArmeService {
           return arme;
         })
       );
+  }
+
+  // Ajouter une arme
+  addArme(arme: Arme) {
+    this.db.collection<Arme>(ArmeService.url).add(Object.assign({}, arme));
+  }
+
+  updateArme(arme: Arme, updateArme: Arme) {
+    this.db.doc<Arme>(ArmeService.url + `/` + arme.id).update(Object.assign({}, updateArme));
   }
 
   private getArmeDocument(id: string): AngularFirestoreDocument<Arme> {

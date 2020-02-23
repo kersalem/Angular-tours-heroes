@@ -35,9 +35,6 @@ export class HeroService {
       .pipe(
         map(liste => {
 
-          // log
-          console.log('getHeroes()');
-
           // Traitement de la liste
           return liste.map(item => {
 
@@ -102,9 +99,7 @@ export class HeroService {
     this.db.doc<Hero>(HeroService.url + `/` + id).delete();
 
   }
-
-
-  // CrÃ©ation du service Firebase en fonction de l'id du hÃ©ro
+  // Création du service Firebase en fonction de l'id du hÃ©ro
   private getHeroDocument(id: string): AngularFirestoreDocument<Hero> {
 
     // return document

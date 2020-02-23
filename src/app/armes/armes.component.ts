@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {Router} from '@angular/router';
 
 import { ArmeService} from '../service/arme.service';
 import { Arme } from '../data/arme';
@@ -12,7 +13,7 @@ import { ARMES } from '../data/mock-armes';
 export class ArmesComponent implements OnInit {
   armes = ARMES;
   selectedArme: Arme;
-  constructor(private armeService: ArmeService) { }
+  constructor(private router: Router, private armeService: ArmeService) { }
   ngOnInit() {
     this.getArmes();
   }
@@ -22,6 +23,9 @@ export class ArmesComponent implements OnInit {
       .subscribe(armes => this.armes = armes);
   }
 
-
+  updateArme(id: string) {
+    this.armeService.idArme = id;
+    this.router.navigateByUrl('/armeEditor');
+  }
 }
 
