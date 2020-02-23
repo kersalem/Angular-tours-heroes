@@ -11,7 +11,11 @@ import {Router} from '@angular/router';
 })
 export class ArmeEditorComponent implements OnInit {
   profileForm = new FormGroup({
-    nom: new FormControl('')
+    nom: new FormControl(''),
+    attaque: new FormControl('0'),
+    esquive: new FormControl('0'),
+    degats: new FormControl('0'),
+    pointDeVie: new FormControl('0'),
   });
   armes: Arme[];
   getArme: Arme;
@@ -33,6 +37,10 @@ export class ArmeEditorComponent implements OnInit {
   saveArme() {
     const arme = new Arme();
     arme.nom = this.profileForm.get('nom').value;
+    arme.attaque = this.profileForm.get('attaque').value;
+    arme.esquive = this.profileForm.get('esquive').value;
+    arme.degats = this.profileForm.get('degats').value;
+    arme.pointDeVie = this.profileForm.get('pointDeVie').value;
     this.router.navigateByUrl('/armes');
     if (this.getArme) {
       arme.id = this.getArme.id;
