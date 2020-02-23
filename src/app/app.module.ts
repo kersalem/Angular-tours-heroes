@@ -19,6 +19,7 @@ import {AngularFireAuthModule} from '@angular/fire/auth';
 import {AngularFireStorageModule} from '@angular/fire/storage';
 import { ArmesComponent } from './armes/armes.component';
 import { ArmeDetailComponent } from './arme-detail/arme-detail.component';
+import { ArmeEditorComponent } from './arme-editor/arme-editor.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { ArmeDetailComponent } from './arme-detail/arme-detail.component';
     MessagesComponent,
     HeroEditorComponent,
     ArmesComponent,
-    ArmeDetailComponent
+    ArmeDetailComponent,
+    ArmeEditorComponent
   ],
   imports: [
     BrowserModule,

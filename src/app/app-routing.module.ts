@@ -7,6 +7,7 @@ import { HeroDetailComponent } from './hero-detail/hero-detail.component';
 import { HeroEditorComponent } from './hero-editor/hero-editor.component';
 import {ArmesComponent} from './armes/armes.component';
 import {ArmeDetailComponent} from './arme-detail/arme-detail.component';
+import {ArmeEditorComponent} from './arme-editor/arme-editor.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
@@ -15,7 +16,8 @@ const routes: Routes = [
   { path: 'heroes', component: HeroesComponent },
   { path: 'heroEditor', component: HeroEditorComponent },
   { path: 'armes', component: ArmesComponent},
-  { path: 'detailArme/:id', component: ArmeDetailComponent}
+  { path: 'detailArme/:id', component: ArmeDetailComponent},
+  { path: 'armeEditor', component: ArmeEditorComponent}
 ];
 
 @NgModule({

@@ -92,8 +92,6 @@ export class HeroService {
   }
   // Modifier un héro
   updateHero(hero: Hero, updateHero: Hero) {
-    console.log("herooooooooooooo", hero);
-    console.log("updateHero", updateHero);
     this.db.doc<Hero>(HeroService.url + `/` + hero.id).update(Object.assign({}, updateHero));
 
   }
