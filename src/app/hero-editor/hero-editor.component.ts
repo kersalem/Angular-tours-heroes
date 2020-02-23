@@ -54,12 +54,9 @@ export class HeroEditorComponent implements OnInit {
       this.router.navigateByUrl('/heroes');
       if (this.getHero) {
         hero.id = this.getHero.id;
-        console.log('modiffffffff');
-
         this.heroService.updateHero(this.getHero, hero);
       } else {
         // sinon l'ajoute
-        console.log('creationnnnnnnnnnnnnnnnnnnn');
         this.heroService.addHero(hero);
       }
     }

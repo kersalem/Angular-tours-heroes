@@ -19,6 +19,7 @@ export class ArmeEditorComponent implements OnInit {
   });
   armes: Arme[];
   getArme: Arme;
+  totalPoints: number;
 
   constructor(private router: Router, private armeService: ArmeService) { }
   getArmes(): void {
@@ -36,17 +37,23 @@ export class ArmeEditorComponent implements OnInit {
   }
   saveArme() {
     const arme = new Arme();
+    this.totalPoints = 0;
     arme.nom = this.profileForm.get('nom').value;
     arme.attaque = this.profileForm.get('attaque').value;
     arme.esquive = this.profileForm.get('esquive').value;
     arme.degats = this.profileForm.get('degats').value;
     arme.pointDeVie = this.profileForm.get('pointDeVie').value;
-    this.router.navigateByUrl('/armes');
-    if (this.getArme) {
-      arme.id = this.getArme.id;
-      this.armeService.updateArme(this.getArme, arme);
-    } else {
+    this.totalPoints = arme.attaque.valueOf() + arme.esquive.valueOf() + arme.degats.valueOf() + arme.pointDeVie.valueOf();
+    if (this.totalPoints === 0) {
+      this.router.navigateByUrl('/armes');
+      if (this.getArme) {
+        arme.id = this.getArme.id;
+        console.log('modiffffffff');
+        this.armeService.updateArme(this.getArme, arme);
+      } else {
+        console.log('creationnnnnnnnnnnnnnnnnnnn');
         this.armeService.addArme(arme);
+      }
     }
   }
 
