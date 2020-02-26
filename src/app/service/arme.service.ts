@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 
 import { Arme } from '../data/arme';
+import { MessageService } from './message.service';
 import { ARMES } from '../data/mock-armes';
 import {AngularFirestore, AngularFirestoreDocument} from '@angular/fire/firestore';
 import {map} from 'rxjs/operators';
@@ -13,10 +14,12 @@ export class ArmeService {
 
   private static url = 'armes';
   idArme: string;
-  constructor(private db: AngularFirestore) { }
+  constructor(private db: AngularFirestore, private messageService: MessageService) { }
 
   getArmes(): Observable<Arme[]> {
-
+/*
+    this.messageService.add('ArmeService: fetched armes');
+*/
     return this.db.collection<Arme>(ArmeService.url)
       .snapshotChanges()
       .pipe(

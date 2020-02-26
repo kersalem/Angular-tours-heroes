@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { ArmeService } from '../service/arme.service';
 import { Arme } from '../data/Arme';
@@ -10,6 +10,7 @@ import {Router} from '@angular/router';
   styleUrls: ['./arme-editor.component.css']
 })
 export class ArmeEditorComponent implements OnInit {
+  @Input() arme: Arme;
   profileForm = new FormGroup({
     nom: new FormControl(''),
     attaque: new FormControl('0'),
@@ -20,6 +21,7 @@ export class ArmeEditorComponent implements OnInit {
   armes: Arme[];
   getArme: Arme;
   totalPoints: number;
+  message: string;
 
   constructor(private router: Router, private armeService: ArmeService) { }
   getArmes(): void {
@@ -28,6 +30,8 @@ export class ArmeEditorComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.message = '';
+    this.totalPoints = 0;
     this.getArmes();
     if (this.armeService.idArme) {
       this.armeService.getArme(this.armeService.idArme)
@@ -47,14 +51,27 @@ export class ArmeEditorComponent implements OnInit {
     if (this.totalPoints === 0) {
       this.router.navigateByUrl('/armes');
       if (this.getArme) {
-        arme.id = this.getArme.id;
-        console.log('modiffffffff');
-        this.armeService.updateArme(this.getArme, arme);
+ /*       if (this.getTotal() !== 0) {
+          this.message = 'Le total des points doit être égale à 0';
+        } else {
+          this.message = 'okay';
+          arme.id = this.getArme.id;
+          console.log('modiffffffff');
+          this.armeService.updateArme(this.getArme, arme);
+        }*/
       } else {
+        this.message = 'toto';
         console.log('creationnnnnnnnnnnnnnnnnnnn');
         this.armeService.addArme(arme);
       }
+    } else {
+      console.log('error');
     }
+  }
+  getTotal(nvelleValeur) {
+    console.log(this.totalPoints)
+    console.log(nvelleValeur + typeof nvelleValeur.valueOf())
+    this.totalPoints = this.totalPoints + nvelleValeur.valueOf();
   }
 
 }

@@ -5,39 +5,42 @@
         <h2>{{ (getArme) ? 'Editer ' + getArme.nom :'Ajouter une nouvelle arme' }}</h2>
         <form [formGroup]="profileForm">
           <div class="form-group">
-            <label>
-              Nom :
-              <input type="text" [ngModel]="(getArme) ? getArme.nom :'' " formControlName="nom" class="form-control" required>
-            </label>
+            <label>Nom : </label>
+              <input id="name" type="text" [ngModel]="(getArme) ? getArme.nom :'' " formControlName="nom" class="form-control" required>
+<!--
+              <input #name id="name" type="text" [ngModel]="(getArme) ? getArme.nom :'' " formControlName="nom" class="form-control" required>
+-->
+              <!--<div  *ngIf="name.oninvalid" class="alert alert-danger">
+                <div *ngIf="name.required">Ecrire nom</div>
+              </div>-->
           </div>
           <div class="form-group">
             <label>
-              Attaque :
+              Attaque :</label>
               <input type="number" [ngModel]="(getArme) ? getArme.attaque : 0 " min="-5" max="5" formControlName="attaque" class="form-control">
-            </label>
+
           </div>
 
           <div class="form-group">
             <label>
-              Esquive:
-              <input type="number" [ngModel]="(getArme) ? getArme.esquive : 0 " formControlName="esquive" class="form-control">
-            </label>
+              Esquive:</label>
+              <input
+                type="number"
+                [ngModel]="(getArme) ? getArme.esquive : 0 "
+                formControlName="esquive"
+                class="form-control">
           </div>
-
           <div class="form-group">
             <label>
-              Degats :
-              <input type="number" [ngModel]="(getArme) ? getArme.degats : 0 " formControlName="degats" class="form-control">
-            </label>
+              Degats : </label>
+            <input type="number" [ngModel]="(getArme) ? getArme.degats : 0 " formControlName="degats" class="form-control">
           </div>
-
           <div class="form-group">
             <label>
-              Point de vie:
+              Point de vie: </label>
               <input type="number" [ngModel]="(getArme) ? getArme.pointDeVie : 0 " formControlName="pointDeVie" class="form-control">
-            </label>
           </div>
-          <button class="btn btn-primary" type="submit" (click)="saveArme()">Submit</button>
+          <button [disabled]="!profileForm.valid || totalPoints !== 0" class="btn btn-primary" type="submit" (click)="saveArme()">Submit</button>
         </form>
       </div>
     </div>
