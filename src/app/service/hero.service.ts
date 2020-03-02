@@ -34,7 +34,7 @@ export class HeroService {
       .snapshotChanges()
       .pipe(
         map(liste => {
-          this.messageService.add('HeroService: Voici la liste des héros');
+          // this.messageService.add('HeroService: Voici la liste des héros');
 
           // Traitement de la liste
           return liste.map(item => {

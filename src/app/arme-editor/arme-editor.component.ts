@@ -13,7 +13,7 @@ import {MessageService} from '../service/message.service';
 export class ArmeEditorComponent implements OnInit {
   @Input() arme: Arme;
   profileForm = new FormGroup({
-    nom: new FormControl(''),
+    name: new FormControl(''),
     attaque: new FormControl('0'),
     esquive: new FormControl('0'),
     degats: new FormControl('0'),
@@ -51,7 +51,7 @@ export class ArmeEditorComponent implements OnInit {
   saveArme() {
     const arme = new Arme();
     this.totalPoints = 0;
-    arme.nom = this.profileForm.get('nom').value;
+    arme.name = this.profileForm.get('name').value;
     arme.attaque = this.profileForm.get('attaque').value;
     console.log('arme.attaqueeeeeeeeeeeeeeeeeeeeee', arme.attaque);
     arme.esquive = this.profileForm.get('esquive').value;
@@ -59,6 +59,7 @@ export class ArmeEditorComponent implements OnInit {
     arme.pointDeVie = this.profileForm.get('pointDeVie').value;
     this.totalPoints = arme.attaque.valueOf() + arme.esquive.valueOf() + arme.degats.valueOf() + arme.pointDeVie.valueOf();
     console.log('total P', this.totalPoints);
+    //////////////////////////////////////////////:
     if (this.totalPoints === 0) {
       this.router.navigateByUrl('/armes');
       if (this.getArme) {
@@ -86,11 +87,11 @@ export class ArmeEditorComponent implements OnInit {
 
     }
   }
-  getTotal(nvelleValeur) {
+  /*getTotal(nvelleValeur) {
     console.log(this.totalPoints);
     console.log(nvelleValeur + typeof nvelleValeur.valueOf());
     this.totalPoints = this.totalPoints + nvelleValeur.valueOf();
-  }
+  }*/
   limitNumber(caracteristique, numberEdit) {
     switch (caracteristique) {
       case 'attaque':
@@ -106,7 +107,6 @@ export class ArmeEditorComponent implements OnInit {
         this.pvValid = (numberEdit > -6 && numberEdit < 6);
         break;
       default:
-        console.log('Je rentre switch');
     }
     this.ifCorrect = this.attaqueValid && this.esquiveValid && this.degatsValid && this.pvValid;
   }
