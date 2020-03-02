@@ -3,32 +3,27 @@
     <div  class="row justify-content-center no-gutters mb-5 mb-lg-0">
       <div class="col-9">
         <h2>{{ (getArme) ? 'Editer ' + getArme.nom :'Ajouter une nouvelle arme' }}</h2>
+        <app-messages></app-messages>
         <form [formGroup]="profileForm">
           <div class="form-group">
             <label>Nom : </label>
               <input id="name" type="text" [ngModel]="(getArme) ? getArme.nom :'' " formControlName="nom" class="form-control" required>
           </div>
           <div class="form-group">
-            <label>
-              Attaque :</label>
+            <label>Attaque :</label>
               <input #attaque type="number" [ngModel]="(getArme) ? getArme.attaque : 0 " min="-5" max="5" (change)="limitNumber('attaque', attaque.value)" formControlName="attaque" class="form-control">
           </div>
 
           <div class="form-group">
-            <label>
-              Esquive:</label>
-              <input
-                #esquive type="number" [ngModel]="(getArme) ? getArme.esquive : 0 " min="-5" max="5" (change)="limitNumber('esquive', esquive.value)" formControlName="esquive" class="form-control">
-<!--              <p>{{ifCorrect}}</p>-->
+            <label>Esquive:</label>
+              <input #esquive type="number" [ngModel]="(getArme) ? getArme.esquive : 0 " min="-5" max="5" (change)="limitNumber('esquive', esquive.value)" formControlName="esquive" class="form-control">
           </div>
           <div class="form-group">
-            <label>
-              Degats : </label>
+            <label>Dégâts : </label>
             <input #degats type="number" [ngModel]="(getArme) ? getArme.degats : 0 " min="-5" max="5" (change)="limitNumber('degats', degats.value)" formControlName="degats" class="form-control">
           </div>
           <div class="form-group">
-            <label>
-              Point de vie: </label>
+            <label>Point de vie: </label>
               <input #pointDeVie type="number" [ngModel]="(getArme) ? getArme.pointDeVie : 0 " min="-5" max="5" (change)="limitNumber('pointDeVie', pointDeVie.value)" formControlName="pointDeVie" class="form-control">
           </div>
           <p>{{ifCorrect}}</p>

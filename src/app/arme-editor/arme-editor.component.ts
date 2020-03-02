@@ -3,6 +3,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { ArmeService } from '../service/arme.service';
 import { Arme } from '../data/Arme';
 import {Router} from '@angular/router';
+import {MessageService} from '../service/message.service';
 
 @Component({
   selector: 'app-arme-editor',
@@ -27,14 +28,13 @@ export class ArmeEditorComponent implements OnInit {
   esquiveValid: boolean;
   degatsValid: boolean;
   pvValid: boolean;
-  constructor(private router: Router, private armeService: ArmeService) { }
+  constructor(private router: Router, private armeService: ArmeService, private messageService: MessageService) { }
   getArmes(): void {
     this.armeService.getArmes()
       .subscribe(armes => this.armes = armes);
   }
 
   ngOnInit() {
-    this.message = '';
     this.totalPoints = 0;
     this.ifCorrect = true;
     this.attaqueValid = true;
@@ -58,15 +58,14 @@ export class ArmeEditorComponent implements OnInit {
     arme.degats = this.profileForm.get('degats').value;
     arme.pointDeVie = this.profileForm.get('pointDeVie').value;
     this.totalPoints = arme.attaque.valueOf() + arme.esquive.valueOf() + arme.degats.valueOf() + arme.pointDeVie.valueOf();
+    console.log('total P', this.totalPoints);
     if (this.totalPoints === 0) {
       this.router.navigateByUrl('/armes');
       if (this.getArme) {
           arme.id = this.getArme.id;
           console.log(' this.totalPoints', this.totalPoints);
-
           this.armeService.updateArme(this.getArme, arme);
         } else {
-        console.log('error');
         this.armeService.addArme(arme);
         }
        /* if (this.getTotal() !== 0) {
@@ -83,8 +82,8 @@ export class ArmeEditorComponent implements OnInit {
         this.armeService.addArme(arme);
       }*/
     } else {
-      console.log('creation et modif NOK');
-      this.message = 'toto';
+      this.messageService.add('Le total doit être égal à 0');
+
     }
   }
   getTotal(nvelleValeur) {

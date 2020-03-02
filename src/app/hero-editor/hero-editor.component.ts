@@ -3,6 +3,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { HeroService } from '../service/hero.service';
 import { Hero } from '../data/Hero';
 import {Router} from '@angular/router';
+import {MessageService} from '../service/message.service';
 
 @Component({
   selector: 'app-hero-editor',
@@ -22,7 +23,7 @@ export class HeroEditorComponent implements OnInit {
   totalPoints: number;
 
 
-  constructor(private router: Router, private heroService: HeroService) { }
+  constructor(private router: Router, private heroService: HeroService, private messageService: MessageService) { }
   getHeroes(): void {
     this.heroService.getHeroes()
       .subscribe(heroes => this.heroes = heroes);
@@ -48,10 +49,12 @@ export class HeroEditorComponent implements OnInit {
     hero.pointDeVie = this.profileForm.get('pointDeVie').value;
     this.totalPoints = hero.attaque.valueOf() + hero.esquive.valueOf() + hero.degats.valueOf() + hero.pointDeVie.valueOf();
     console.log(typeof this.profileForm.get('attaque').value);
+    console.log('total P', this.totalPoints)
+
     console.log(this.totalPoints);
     if (this.totalPoints > 1 && this.totalPoints < 40) {
       // Si hero à modifier
-      this.router.navigateByUrl('/heroes');
+      // this.router.navigateByUrl('/heroes');
       if (this.getHero) {
         hero.id = this.getHero.id;
         this.heroService.updateHero(this.getHero, hero);
@@ -59,6 +62,8 @@ export class HeroEditorComponent implements OnInit {
         // sinon l'ajoute
         this.heroService.addHero(hero);
       }
+    } else {
+      this.messageService.add('Le total doit être entre 1 et 40');
     }
   }
 }
