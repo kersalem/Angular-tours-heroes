@@ -1,28 +1,22 @@
 <section id="projects" class="projects-section bg-light">
   <div class="col-12 container">
     <div  class="row justify-content-start">
-    <!--  <div *ngIf="arme">-->
-        <div class="col-6">
-          <h2>Details : {{arme.nom}}</h2>
-          <div><span>id: </span>{{arme.id}}</div>
-          <div>
-            <div>Nom: {{arme.nom}}</div>
-          </div>
-          <div>attaque:
-            <div> {{ arme.attaque }}</div>
-          </div>
-          <div>esquive:
-            <div> {{ arme.esquive }}</div>
-          </div>
-          <div>degats:
-            <div> {{ arme.degats }}</div>
-          </div>
-          <div>Points de vie:
-            <div>
-              {{ arme.pointDeVie }}
-            </div>
-            <!-- </div>-->
-          </div>
+        <div class="col-12">
+
+          <h2>Détails : {{arme.nom}}</h2>
+
+          <div class="col-6"><span> Id: </span>{{arme.id}}</div>
+
+          <div class="col-6"><span> Nom: </span>{{arme.nom}}</div>
+
+          <div class="col-6"><span> Attaque: </span>{{ arme.attaque }}</div>
+
+          <div class="col-6"><span> Esquive:</span>{{ arme.esquive }}</div>
+
+          <div class="col-6"><span> Dégats:</span>{{ arme.degats }}</div>
+
+          <div class="col-6"><span> Points de vie: </span>{{ arme.pointDeVie }}</div>
+
         </div>
     </div>
   </div>

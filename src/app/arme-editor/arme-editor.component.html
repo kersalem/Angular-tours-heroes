@@ -7,42 +7,38 @@
           <div class="form-group">
             <label>Nom : </label>
               <input id="name" type="text" [ngModel]="(getArme) ? getArme.nom :'' " formControlName="nom" class="form-control" required>
-<!--
-              <input #name id="name" type="text" [ngModel]="(getArme) ? getArme.nom :'' " formControlName="nom" class="form-control" required>
--->
-              <!--<div  *ngIf="name.oninvalid" class="alert alert-danger">
-                <div *ngIf="name.required">Ecrire nom</div>
-              </div>-->
           </div>
           <div class="form-group">
             <label>
               Attaque :</label>
-              <input type="number" [ngModel]="(getArme) ? getArme.attaque : 0 " min="-5" max="5" formControlName="attaque" class="form-control">
-
+              <input #attaque type="number" [ngModel]="(getArme) ? getArme.attaque : 0 " min="-5" max="5" (change)="limitNumber('attaque', attaque.value)" formControlName="attaque" class="form-control">
           </div>
 
           <div class="form-group">
             <label>
               Esquive:</label>
               <input
-                type="number"
-                [ngModel]="(getArme) ? getArme.esquive : 0 "
-                formControlName="esquive"
-                class="form-control">
+                #esquive type="number" [ngModel]="(getArme) ? getArme.esquive : 0 " min="-5" max="5" (change)="limitNumber('esquive', esquive.value)" formControlName="esquive" class="form-control">
+<!--              <p>{{ifCorrect}}</p>-->
           </div>
           <div class="form-group">
             <label>
               Degats : </label>
-            <input type="number" [ngModel]="(getArme) ? getArme.degats : 0 " formControlName="degats" class="form-control">
+            <input #degats type="number" [ngModel]="(getArme) ? getArme.degats : 0 " min="-5" max="5" (change)="limitNumber('degats', degats.value)" formControlName="degats" class="form-control">
           </div>
           <div class="form-group">
             <label>
               Point de vie: </label>
-              <input type="number" [ngModel]="(getArme) ? getArme.pointDeVie : 0 " formControlName="pointDeVie" class="form-control">
+              <input #pointDeVie type="number" [ngModel]="(getArme) ? getArme.pointDeVie : 0 " min="-5" max="5" (change)="limitNumber('pointDeVie', pointDeVie.value)" formControlName="pointDeVie" class="form-control">
           </div>
-          <button [disabled]="!profileForm.valid || totalPoints !== 0" class="btn btn-primary" type="submit" (click)="saveArme()">Submit</button>
+          <p>{{ifCorrect}}</p>
+          <button [disabled]="!profileForm.valid || totalPoints !== 0 || !ifCorrect" class="btn btn-primary" type="submit" (click)="saveArme()">Submit</button>
         </form>
       </div>
     </div>
   </div>
 </section>
+
+
+
+<!--attaque.value <-6 || attaque.value > 6-->

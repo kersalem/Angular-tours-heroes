@@ -34,6 +34,7 @@ export class HeroService {
       .snapshotChanges()
       .pipe(
         map(liste => {
+          this.messageService.add('HeroService: Voici la liste des héros');
 
           // Traitement de la liste
           return liste.map(item => {
@@ -50,7 +51,6 @@ export class HeroService {
 
             // log
             console.log('   hero ' + id);
-
             // Use spread operator to add the id to the document data
             return hero;
 
@@ -90,7 +90,6 @@ export class HeroService {
   // Modifier un héro
   updateHero(hero: Hero, updateHero: Hero) {
     this.db.doc<Hero>(HeroService.url + `/` + hero.id).update(Object.assign({}, updateHero));
-
   }
 
   // Suppression d'un hÃ©ro
