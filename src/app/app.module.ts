@@ -20,6 +20,16 @@ import {AngularFireStorageModule} from '@angular/fire/storage';
 import { ArmesComponent } from './armes/armes.component';
 import { ArmeDetailComponent } from './arme-detail/arme-detail.component';
 import { ArmeEditorComponent } from './arme-editor/arme-editor.component';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import {_MatMenuDirectivesModule} from '@angular/material/typings/esm5/menu';
+import {
+  MatButtonModule, MatCardModule,
+  MatGridListModule,
+  MatIconModule, MatInputModule,
+  MatListModule,
+  MatMenuModule, MatProgressBarModule,
+  MatToolbarModule
+} from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -39,12 +49,19 @@ import { ArmeEditorComponent } from './arme-editor/arme-editor.component';
     AppRoutingModule,
     ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebase),
-   // AngularFireAnalyticsModule, // dynamically imports firebase/analytics
-    AngularFirestoreModule, // imports firebase/firestore, only needed for database features
-   // AngularFireAuthModule, // imports firebase/auth, only needed for auth features,
-   // AngularFireStorageModule // imports firebase/storage only needed for storage features
+    AngularFirestoreModule,
+    // AngularFireAnalyticsModule, // dynamically imports firebase/analytics
+    NoopAnimationsModule,
+    // imports firebase/firestore, only needed for database features
+    // AngularFireAuthModule, // imports firebase/auth, only needed for auth features,
+    // AngularFireStorageModule // imports firebase/storage only needed for storage features
+    MatMenuModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatButtonModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+

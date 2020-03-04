@@ -54,45 +54,23 @@ export class ArmeEditorComponent implements OnInit {
     this.totalPoints = 0;
     arme.name = this.profileForm.get('name').value;
     arme.attaque = this.profileForm.get('attaque').value;
-    console.log('arme.attaqueeeeeeeeeeeeeeeeeeeeee', arme.attaque);
     arme.esquive = this.profileForm.get('esquive').value;
     arme.degats = this.profileForm.get('degats').value;
     arme.pointDeVie = this.profileForm.get('pointDeVie').value;
     this.totalPoints = arme.attaque.valueOf() + arme.esquive.valueOf() + arme.degats.valueOf() + arme.pointDeVie.valueOf();
-    console.log('total P', this.totalPoints);
     if (this.totalPoints === 0) {
       this.router.navigateByUrl('/armes');
       if (this.getArme) {
           arme.id = this.getArme.id;
-          console.log(' this.totalPoints', this.totalPoints);
           this.armeService.updateArme(this.getArme, arme);
         } else {
         this.armeService.addArme(arme);
         }
-       /* if (this.getTotal() !== 0) {
-          this.message = 'Le total des points doit être égale à 0';
-        } else {
-          this.message = 'okay';
-          arme.id = this.getArme.id;
-          console.log('modiffffffff');
-          this.armeService.updateArme(this.getArme, arme);
-        }
-      } else {
-        this.message = 'toto';
-        console.log('creationnnnnnnnnnnnnnnnnnnn');
-        this.armeService.addArme(arme);
-      }*/
     } else {
-      console.log('creationnnnnnnnnnnnnnnnnnnn');
       this.messageService.add('Le total doit être égal à 0');
 
     }
   }
-  /*getTotal(nvelleValeur) {
-    console.log(this.totalPoints);
-    console.log(nvelleValeur + typeof nvelleValeur.valueOf());
-    this.totalPoints = this.totalPoints + nvelleValeur.valueOf();
-  }*/
   limitNumber(caracteristique, numberEdit) {
     switch (caracteristique) {
       case 'attaque':

@@ -1,32 +1,19 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">Tour of heroes</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" routerLink="/dashboard" title="dashboard">Dashboard <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item active">
-        <a class="nav-link" routerLink="/heroes"  title="ListHeroes" id="navbarDropdown">
-          Liste héros<span class="sr-only">(current)</span>
-        </a>
-      <li class="nav-item active">
-        <a class="nav-link" routerLink="/heroEditor" title="creerHero">Créer héro <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item active">
-        <a class="nav-link" routerLink="/armes" title="armes">Liste armes <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item active">
-        <a class="nav-link" routerLink="/armeEditor" title="creerArme">Créer arme <span class="sr-only">(current)</span></a>
-      </li>
-    </ul>
-  </div>
-</nav>
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <h1>Tour of Heroes</h1>
+    <div>
+      <button mat-button routerLink="/dashboard">Tableau de bord</button>
+      <button mat-button routerLink="/heroes">Liste héros</button>
+      <button mat-button routerLink="/heroEditor">Créer héro</button>
+      <button mat-button routerLink="/armes">Liste armes</button>
+      <button mat-button routerLink="/armeEditor">Créer arme</button>
+    </div>
+  </mat-toolbar-row>
+</mat-toolbar>
 
 <router-outlet></router-outlet>
 <app-messages></app-messages>
-
+<!--
+<mat-slider min="1" max="100" step="1" value="1"></mat-slider>
+-->
 <!--<app-hero-editor></app-hero-editor>-->
-
