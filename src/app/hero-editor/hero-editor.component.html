@@ -4,43 +4,63 @@
       <div class="col-9">
         <h2>{{ (getHero) ? 'Editer ' + getHero.name :'Ajouter un nouvel héro' }}</h2>
         <app-messages></app-messages>
-<div>Total points à distribuer : {{ totalPoints }}</div>
+        <div>Total points à distribuer :***************** {{ totalPoints }}*****************</div>
         <form [formGroup]="profileForm">
           <div class="form-group">
-            <label>
-              Nom :
+            <label>Nom :</label>
               <input type="text" [ngModel]="(getHero) ? getHero.name :'' " formControlName="name" class="form-control" required>
-            </label>
           </div>
 
           <div class="form-group">
-            <label>
-              Attaque :
-              <input type="number" [ngModel]="(getHero) ? getHero.attaque : 1 " formControlName="attaque" class="form-control">
-            </label>
+            <label>Attaque :</label>
+              <input
+                #attaque
+                type="number"
+                [ngModel]="(getHero) ? getHero.attaque : 1 "
+                formControlName="attaque"
+                class="form-control"
+                (change)="limitNumber('attaque', attaque.value)">
+
           </div>
 
           <div class="form-group">
-            <label>
-              Esquive:
-              <input type="number" [ngModel]="(getHero) ? getHero.esquive : 1 " formControlName="esquive" class="form-control">
-            </label>
+            <label>Esquive:</label>
+              <input
+                #esquive
+                type="number"
+                [ngModel]="(getHero) ? getHero.esquive : 1 "
+                formControlName="esquive"
+                class="form-control"
+                (change)="limitNumber('esquive', esquive.value)">
           </div>
 
           <div class="form-group">
-            <label>
-              Degats :
-              <input type="number" [ngModel]="(getHero) ? getHero.degats : 1 " formControlName="degats" class="form-control">
-            </label>
+            <label>Degats :</label>
+              <input
+                #degats
+                type="number"
+                [ngModel]="(getHero) ? getHero.degats : 1 "
+                formControlName="degats"
+                class="form-control"
+                (change)="limitNumber('degats', degats.value)"
+              >
           </div>
 
           <div class="form-group">
-            <label>
-              Point de vie:
-              <input type="number" [ngModel]="(getHero) ? getHero.pointDeVie : 1 " formControlName="pointDeVie" class="form-control">
-            </label>
+            <label>Point de vie: </label>
+            <input
+              #pointDeVie
+              type="number"
+              [ngModel]="(getHero) ? getHero.pointDeVie : 1 "
+              formControlName="pointDeVie"
+              class="form-control"
+              (change)="limitNumber('pointDeVie', pointDeVie.value)">
           </div>
-          <button [disabled]="!profileForm.valid || totalPoints === 40 || totalPoints < 1" class="btn btn-primary" type="submit" (click)="saveHero()">Submit</button>
+          <p>{{ifCorrect}}</p>
+          <button [disabled]="!profileForm.valid || totalPoints === 40 || totalPoints < 1 || !ifCorrect"
+                  class="btn btn-primary"
+                  type="submit"
+                  (click)="saveHero()">Submit</button>
         </form>
       </div>
     </div>

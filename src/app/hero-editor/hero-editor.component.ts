@@ -21,7 +21,12 @@ export class HeroEditorComponent implements OnInit {
   heroes: Hero[];
   getHero: Hero;
   totalPoints: number;
-
+  message: string;
+  ifCorrect: boolean;
+  attaqueValid: boolean;
+  esquiveValid: boolean;
+  degatsValid: boolean;
+  pvValid: boolean;
 
   constructor(private router: Router, private heroService: HeroService, private messageService: MessageService) { }
   getHeroes(): void {
@@ -30,6 +35,11 @@ export class HeroEditorComponent implements OnInit {
   }
   ngOnInit(): void {
     this.getHeroes();
+    this.ifCorrect = true;
+    this.attaqueValid = true;
+    this.esquiveValid = true;
+    this.degatsValid = true;
+    this.pvValid = true;
     if (this.heroService.idHero) {
       // subscribe voir le resultat de la fonction
       // Recp données d'un hero à modifier
@@ -49,12 +59,14 @@ export class HeroEditorComponent implements OnInit {
     hero.pointDeVie = this.profileForm.get('pointDeVie').value;
     this.totalPoints = hero.attaque.valueOf() + hero.esquive.valueOf() + hero.degats.valueOf() + hero.pointDeVie.valueOf();
     console.log(typeof this.profileForm.get('attaque').value);
-    console.log('total P', this.totalPoints)
+    console.log('total P', this.totalPoints);
 
     console.log(this.totalPoints);
     if (this.totalPoints > 1 && this.totalPoints < 40) {
+      console.log('je rentre iciiiiiiiiii if edit Hero');
+
       // Si hero à modifier
-      // this.router.navigateByUrl('/heroes');
+      this.router.navigateByUrl('/heroes');
       if (this.getHero) {
         hero.id = this.getHero.id;
         this.heroService.updateHero(this.getHero, hero);
@@ -63,7 +75,27 @@ export class HeroEditorComponent implements OnInit {
         this.heroService.addHero(hero);
       }
     } else {
+      console.log('je rentre iciiiiiiiiii else edit Hero');
       this.messageService.add('Le total doit être entre 1 et 40');
     }
   }
+  limitNumber(caracteristique, numberEdit) {
+    switch (caracteristique) {
+      case 'attaque':
+        this.attaqueValid = (numberEdit > 0 && numberEdit < 40);
+        break;
+      case 'esquive':
+        this.esquiveValid = (numberEdit > 0 && numberEdit < 40);
+        break;
+      case 'degats':
+        this.degatsValid = (numberEdit > 0 && numberEdit < 40);
+        break;
+      case 'pointDeVie':
+        this.pvValid = (numberEdit > 0 && numberEdit < 40);
+        break;
+      default:
+    }
+    this.ifCorrect = this.attaqueValid && this.esquiveValid && this.degatsValid && this.pvValid;
+  }
+
 }

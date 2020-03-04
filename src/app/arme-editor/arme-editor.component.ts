@@ -35,6 +35,7 @@ export class ArmeEditorComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.message = '';
     this.totalPoints = 0;
     this.ifCorrect = true;
     this.attaqueValid = true;
@@ -59,7 +60,6 @@ export class ArmeEditorComponent implements OnInit {
     arme.pointDeVie = this.profileForm.get('pointDeVie').value;
     this.totalPoints = arme.attaque.valueOf() + arme.esquive.valueOf() + arme.degats.valueOf() + arme.pointDeVie.valueOf();
     console.log('total P', this.totalPoints);
-    //////////////////////////////////////////////:
     if (this.totalPoints === 0) {
       this.router.navigateByUrl('/armes');
       if (this.getArme) {
@@ -83,6 +83,7 @@ export class ArmeEditorComponent implements OnInit {
         this.armeService.addArme(arme);
       }*/
     } else {
+      console.log('creationnnnnnnnnnnnnnnnnnnn');
       this.messageService.add('Le total doit être égal à 0');
 
     }
