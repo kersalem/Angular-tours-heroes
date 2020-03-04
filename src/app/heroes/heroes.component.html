@@ -23,10 +23,10 @@
               </a>
             </td>
             <td>
-              <button type="submit" (click)="updateHero(hero.id)">Modifier
-              </button>
-              <button type="submit" (click)="deleteHero(hero.id)">Supprimer
-              </button>
+              <mat-chip-list aria-label="Fish selection">
+                <mat-chip color="primary" type="submit" (click)="updateHero(hero.id)" selected>Modifier</mat-chip>
+                <mat-chip type="submit" (click)="deleteHero(hero.id)">Supprimer</mat-chip>
+              </mat-chip-list>
             </td>
           </tr>
           </tbody>

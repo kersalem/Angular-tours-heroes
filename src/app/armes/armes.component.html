@@ -24,10 +24,10 @@
               </a>
             </td>
             <td>
-              <button type="submit" (click)="updateArme(arme.id)">Modifier
-              </button>
-              <button type="submit" (click)="deleteArme(arme.id)">Supprimer
-              </button>
+              <mat-chip-list aria-label="Fish selection">
+                <mat-chip color="primary" type="submit" (click)="updateArme(arme.id)" selected>Modifier</mat-chip>
+                <mat-chip type="submit" (click)="deleteArme(arme.id)">Supprimer</mat-chip>
+              </mat-chip-list>
             </td>
           </tr>
           </tbody>

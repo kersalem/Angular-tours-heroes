@@ -23,7 +23,7 @@ import { ArmeEditorComponent } from './arme-editor/arme-editor.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import {_MatMenuDirectivesModule} from '@angular/material/typings/esm5/menu';
 import {
-  MatButtonModule, MatCardModule,
+  MatButtonModule, MatCardModule, MatChipsModule, MatFormFieldModule,
   MatGridListModule,
   MatIconModule, MatInputModule,
   MatListModule,
@@ -59,6 +59,8 @@ import {
     MatToolbarModule,
     MatIconModule,
     MatButtonModule,
+    MatChipsModule,
+    MatFormFieldModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
