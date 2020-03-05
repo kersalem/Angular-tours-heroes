@@ -8,7 +8,7 @@ export class Hero extends Serializable  {
   degats: number;
   pointDeVie: number;
 
-  uneMethode(): string {
+/*  uneMethode(): string {
     return 'le nom de mon hero' + this.name;
-  }
+  }*/
 }

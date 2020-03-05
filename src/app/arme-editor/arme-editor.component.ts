@@ -74,16 +74,27 @@ export class ArmeEditorComponent implements OnInit {
     switch (caracteristique) {
       case 'attaque':
         this.attaqueValid = (numberEdit > -6 && numberEdit < 6);
-        this.message = 'test limitNumber';
+        if (numberEdit < -5 || numberEdit > 5) {
+          this.messageService.add('Choisissez un chifre en -5 et 5');
+        }
         break;
       case 'esquive':
         this.esquiveValid = (numberEdit > -6 && numberEdit < 6);
+        if (numberEdit < -5 || numberEdit > 5) {
+          this.messageService.add('Choisissez un chifre en -5 et 5');
+        }
         break;
       case 'degats':
         this.degatsValid = (numberEdit > -6 && numberEdit < 6);
+        if (numberEdit < -5 || numberEdit > 5) {
+          this.messageService.add('Choisissez un chifre en -5 et 5');
+        }
         break;
       case 'pointDeVie':
         this.pvValid = (numberEdit > -6 && numberEdit < 6);
+        if (numberEdit < -5 || numberEdit > 5) {
+          this.messageService.add('Choisissez un chifre en -5 et 5');
+        }
         break;
       default:
     }

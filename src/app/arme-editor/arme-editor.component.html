@@ -27,7 +27,7 @@
               <input #pointDeVie type="number" [ngModel]="(getArme) ? getArme.pointDeVie : 0 " min="-5" max="5" (change)="limitNumber('pointDeVie', pointDeVie.value)" formControlName="pointDeVie" class="form-control">
           </div>
           <p>{{ifCorrect}}</p>
-          <button [disabled]="!profileForm.valid || totalPoints !== 0 || !ifCorrect" class="btn btn-primary" type="submit" (click)="saveArme()">Submit</button>
+          <button [disabled]="!profileForm.valid" class="btn btn-primary" type="submit" (click)="saveArme()">Submit</button>
         </form>
       </div>
     </div>
