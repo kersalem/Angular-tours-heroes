@@ -23,6 +23,11 @@ export class ArmesComponent implements OnInit {
       .subscribe(armes => this.armes = armes);
   }
 
+/*  getArmes(): void {
+    this.armeService.getArmes()
+      .subscribe(armes => {this.armes = armes; methode});
+  }*/
+
   updateArme(id: string) {
     this.armeService.idArme = id;
     this.router.navigateByUrl('/armeEditor');
