@@ -4,7 +4,7 @@
       <div class="col-9">
         <h2>{{ (getHero) ? 'Editer ' + getHero.name :'Ajouter un nouvel héro' }}</h2>
         <app-messages></app-messages>
-        <div>Total points à distribuer :***************** {{ totalPoints }}*****************</div>
+        <div>Vous pouvez distribuer jusqu'à 40 au total, il vous reste  :*** {{ totalPoints }}*** de points</div>
         <form [formGroup]="profileForm">
           <div class="form-group">
             <label>Nom :</label>

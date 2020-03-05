@@ -8,7 +8,10 @@
         <table class="table table-dark col-12 justify-content-start">
           <tr>
             <th scope="row">Id</th>
-            <th scope="row">Nom</th>
+            <th scope="row">Nom
+              <mat-chip color="primary" type="submit" (click)="triHeroNom()" selected>Trier</mat-chip>
+            </th>
+            <th scope="row">Actions</th>
           </tr>
           <tbody>
           <tr *ngFor="let hero of heroes">

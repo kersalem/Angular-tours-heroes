@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 
 import { Hero } from '../data/hero';
+import { Arme } from '../data/arme';
 import {MessageService} from './message.service';
 
 import {AngularFirestore, DocumentChangeAction} from '@angular/fire/firestore';
@@ -21,15 +22,8 @@ export class HeroService {
   constructor(private messageService: MessageService,
               private db: AngularFirestore) { }
 
-  /*getHeroes(): Observable<Hero[]> {
-    this.messageService.add('HeroService: fetched heroes');
-    return this.db.collection<Hero>('heroes').valueChanges();
-  }*/
-
-  // RÃ©cupÃ©ration des hÃ©ros
+  // Récuppération des héros
   getHeroes(): Observable<Hero[]> {
-
-    //
     return this.db.collection<Hero>(HeroService.url)
       .snapshotChanges()
       .pipe(
@@ -49,17 +43,14 @@ export class HeroService {
             const id = item.payload.doc.id;
             hero.id = id;
 
-            // log
-            console.log('   hero ' + id);
             // Use spread operator to add the id to the document data
             return hero;
-
           });
         })
       );
   }
 
-  // RÃ©cupÃ©ration d'un hÃ©ro en fonction de son id
+  // Récupération d'un héro en fonction de son id
   getHero(id: string): Observable<Hero> {
 
     // Return hero observable
@@ -82,7 +73,6 @@ export class HeroService {
         })
       );
   }
-
   // Ajout d'un hÃ©ro
   addHero(hero: Hero) {
     this.db.collection<Hero>(HeroService.url).add(Object.assign({}, hero));
