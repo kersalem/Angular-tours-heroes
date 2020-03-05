@@ -33,3 +33,7 @@ button.clear {
   color: #333;
   margin-bottom: 12px;
 }
+
+h6 {
+  color: red;
+}
