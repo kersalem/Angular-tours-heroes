@@ -68,13 +68,13 @@ export class ArmeEditorComponent implements OnInit {
         }
     } else {
       this.messageService.add('Le total doit être égal à 0');
-
     }
   }
   limitNumber(caracteristique, numberEdit) {
     switch (caracteristique) {
       case 'attaque':
         this.attaqueValid = (numberEdit > -6 && numberEdit < 6);
+        this.message = 'test limitNumber';
         break;
       case 'esquive':
         this.esquiveValid = (numberEdit > -6 && numberEdit < 6);
