@@ -63,19 +63,17 @@ export class HeroEditorComponent implements OnInit {
 
     console.log(this.totalPoints);
     if (this.totalPoints > 1 && this.totalPoints < 40) {
-      console.log('je rentre iciiiiiiiiii if edit Hero');
-
       // Si hero à modifier
-      this.router.navigateByUrl('/heroes');
       if (this.getHero) {
         hero.id = this.getHero.id;
         this.heroService.updateHero(this.getHero, hero);
+        this.router.navigateByUrl('/heroes');
       } else {
         // sinon l'ajoute
         this.heroService.addHero(hero);
+        this.router.navigateByUrl('/heroes');
       }
     } else {
-      console.log('je rentre iciiiiiiiiii else edit Hero');
       this.messageService.add('Le total doit être entre 1 et 40');
     }
   }
@@ -83,15 +81,27 @@ export class HeroEditorComponent implements OnInit {
     switch (caracteristique) {
       case 'attaque':
         this.attaqueValid = (numberEdit > 0 && numberEdit < 40);
+        if (numberEdit < 0 || numberEdit > 40) {
+          this.messageService.add('Choisissez un chifre en 0 et 40');
+        }
         break;
       case 'esquive':
         this.esquiveValid = (numberEdit > 0 && numberEdit < 40);
+        if (numberEdit < 0 || numberEdit > 40) {
+          this.messageService.add('Choisissez un chifre en 0 et 40');
+        }
         break;
       case 'degats':
         this.degatsValid = (numberEdit > 0 && numberEdit < 40);
+        if (numberEdit < 0 || numberEdit > 40) {
+          this.messageService.add('Choisissez un chifre en 0 et 40');
+        }
         break;
       case 'pointDeVie':
         this.pvValid = (numberEdit > 0 && numberEdit < 40);
+        if (numberEdit < 0 || numberEdit > 40) {
+          this.messageService.add('Choisissez un chifre en 0 et 40');
+        }
         break;
       default:
     }
