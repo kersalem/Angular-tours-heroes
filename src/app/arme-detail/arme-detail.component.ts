@@ -1,7 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
+
 import {Arme} from '../data/arme';
-import {ActivatedRoute} from '@angular/router';
 import {ArmeService} from '../service/arme.service';
+import {ActivatedRoute} from '@angular/router';
 import { Location } from '@angular/common';
 
 @Component({
@@ -12,7 +13,7 @@ import { Location } from '@angular/common';
 export class ArmeDetailComponent implements OnInit {
   arme: Arme;
   rest: number;
-  // @Input() arme: Arme;
+
   constructor(
     private route: ActivatedRoute,
     private armeService: ArmeService,
@@ -26,5 +27,8 @@ export class ArmeDetailComponent implements OnInit {
     const id = this.route.snapshot.paramMap.get('id');
     this.armeService.getArme(id)
       .subscribe(arme => this.arme = arme);
+  }
+  goBack(): void {
+    this.location.back();
   }
 }

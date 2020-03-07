@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Location } from '@angular/common';
 
 import { Hero } from '../data/hero';
 import { HeroService } from '../service/hero.service';
-
+import { ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-hero-detail',
@@ -24,7 +23,6 @@ export class HeroDetailComponent implements OnInit {
   ngOnInit(): void {
     this.getHero();
   }
-
   getHero(): void {
     const id = this.route.snapshot.paramMap.get('id');
     this.heroService.getHero(id)

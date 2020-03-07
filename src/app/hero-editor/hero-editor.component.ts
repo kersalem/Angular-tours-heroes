@@ -21,7 +21,6 @@ export class HeroEditorComponent implements OnInit {
   heroes: Hero[];
   getHero: Hero;
   totalPoints: number;
-  message: string;
   ifCorrect: boolean;
   attaqueValid: boolean;
   esquiveValid: boolean;
@@ -46,6 +45,7 @@ export class HeroEditorComponent implements OnInit {
       this.heroService.getHero(this.heroService.idHero).subscribe(value => this.getHero = value);
       // REINITIALISER Le idHero
       this.heroService.idHero = null;
+      console.log('this.totalPoints', this.totalPoints);
     }
   }
   saveHero() {
@@ -61,7 +61,6 @@ export class HeroEditorComponent implements OnInit {
     console.log(typeof this.profileForm.get('attaque').value);
     console.log('total P', this.totalPoints);
 
-    console.log(this.totalPoints);
     if (this.totalPoints > 1 && this.totalPoints < 40) {
       // Si hero à modifier
       if (this.getHero) {
