@@ -9,11 +9,23 @@
             <label>Nom : </label>
               <input id="name" type="text" [ngModel]="(getArme) ? getArme.name :'' " formControlName="name" class="form-control" required>
           </div>
+          <div *ngIf="profileForm.controls['name'].invalid && (profileForm.controls['name'].dirty || profileForm.controls['name'].touched)" class="alert alert-danger">
+            <div *ngIf="profileForm.controls['name'].errors.required">
+              Name is required.
+            </div>
+          </div>
           <div class="form-group">
             <label>Attaque :</label>
               <input #attaque type="number" [ngModel]="(getArme) ? getArme.attaque : 0 " min="-5" max="5" (change)="limitNumber('attaque', attaque.value)" formControlName="attaque" class="form-control">
           </div>
-
+          <div *ngIf="profileForm.controls['attaque'].invalid &&
+            (profileForm.controls['attaque'].dirty ||
+            profileForm.controls['attaque'].touched)"
+            class="alert alert-danger">
+            <div *ngIf="profileForm.controls['attaque'].errors.required">
+              Name is required.
+            </div>
+          </div>
           <div class="form-group">
             <label>Esquive:</label>
               <input #esquive type="number" [ngModel]="(getArme) ? getArme.esquive : 0 " min="-5" max="5" (change)="limitNumber('esquive', esquive.value)" formControlName="esquive" class="form-control">

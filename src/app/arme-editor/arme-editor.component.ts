@@ -10,6 +10,8 @@ import {MessageService} from '../service/message.service';
   templateUrl: './arme-editor.component.html',
   styleUrls: ['./arme-editor.component.css']
 })
+
+
 export class ArmeEditorComponent implements OnInit {
   @Input() arme: Arme;
   profileForm = new FormGroup({

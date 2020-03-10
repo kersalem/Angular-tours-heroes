@@ -80,19 +80,19 @@ export class HeroEditorComponent implements OnInit {
     switch (caracteristique) {
       case 'attaque':
         this.attaqueValid = (numberEdit > 0 && numberEdit < 40);
-        if (numberEdit < 0 || numberEdit > 40) {
+        if (numberEdit <= 1 || numberEdit >= 40) {
           this.messageService.add('Choisissez un chifre en 0 et 40');
         }
         break;
       case 'esquive':
         this.esquiveValid = (numberEdit > 0 && numberEdit < 40);
-        if (numberEdit < 0 || numberEdit > 40) {
+        if (numberEdit <= 1 || numberEdit >= 40) {
           this.messageService.add('Choisissez un chifre en 0 et 40');
         }
         break;
       case 'degats':
         this.degatsValid = (numberEdit > 0 && numberEdit < 40);
-        if (numberEdit < 0 || numberEdit > 40) {
+        if (numberEdit <= 1 || numberEdit >= 40) {
           this.messageService.add('Choisissez un chifre en 0 et 40');
         }
         break;
