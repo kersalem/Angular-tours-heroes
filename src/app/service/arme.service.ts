@@ -50,7 +50,7 @@ export class ArmeService {
           // New Arme
           const arme = new Arme().fromJSON(data);
           arme.id = id;
-
+          console.log('arme: ', arme );
           // Use spread operator to add the id to the document data
           return arme;
         })

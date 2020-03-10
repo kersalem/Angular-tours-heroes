@@ -2,6 +2,7 @@ import {Serializable} from './serializable';
 
 export class Hero extends Serializable  {
   id: string;
+  id_arme: string;
   name: string;
   attaque: number;
   esquive: number;
