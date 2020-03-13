@@ -26,6 +26,7 @@ export class HeroEditorComponent implements OnInit {
   esquiveValid: boolean;
   degatsValid: boolean;
   pvValid: boolean;
+  message: string;
 
   constructor(private router: Router, private heroService: HeroService, private messageService: MessageService) { }
   getHeroes(): void {
@@ -33,12 +34,14 @@ export class HeroEditorComponent implements OnInit {
       .subscribe(heroes => this.heroes = heroes);
   }
   ngOnInit(): void {
+    this.profileForm.get('attaque').setValue(1);
     this.getHeroes();
     this.ifCorrect = true;
     this.attaqueValid = true;
     this.esquiveValid = true;
     this.degatsValid = true;
     this.pvValid = true;
+    this.message = '';
     if (this.heroService.idHero) {
       // subscribe voir le resultat de la fonction
       // Recp données d'un hero à modifier
@@ -76,35 +79,14 @@ export class HeroEditorComponent implements OnInit {
       this.messageService.add('Le total doit être entre 1 et 40');
     }
   }
-  limitNumber(caracteristique, numberEdit) {
-    switch (caracteristique) {
-      case 'attaque':
-        this.attaqueValid = (numberEdit > 0 && numberEdit < 40);
-        if (numberEdit <= 1 || numberEdit >= 40) {
-          this.messageService.add('Choisissez un chifre en 0 et 40');
-        }
-        break;
-      case 'esquive':
-        this.esquiveValid = (numberEdit > 0 && numberEdit < 40);
-        if (numberEdit <= 1 || numberEdit >= 40) {
-          this.messageService.add('Choisissez un chifre en 0 et 40');
-        }
-        break;
-      case 'degats':
-        this.degatsValid = (numberEdit > 0 && numberEdit < 40);
-        if (numberEdit <= 1 || numberEdit >= 40) {
-          this.messageService.add('Choisissez un chifre en 0 et 40');
-        }
-        break;
-      case 'pointDeVie':
-        this.pvValid = (numberEdit > 0 && numberEdit < 40);
-        if (numberEdit < 0 || numberEdit > 40) {
-          this.messageService.add('Choisissez un chifre en 0 et 40');
-        }
-        break;
-      default:
+  limitNumber() {
+    // je recupere les saisies du form
+    const totalPoints = this.profileForm.get('attaque').value + this.profileForm.get('esquive').value + this.profileForm.get('degats').value + this.profileForm.get('pointDeVie').value;
+    if (totalPoints > 40) {
+      this.message = 'erreur totale' + totalPoints;
+    } else {
+      this.message = '';
     }
-    this.ifCorrect = this.attaqueValid && this.esquiveValid && this.degatsValid && this.pvValid;
   }
-
+  // attaque: number, esquive: number, degats: number, pointDeVie: number
 }

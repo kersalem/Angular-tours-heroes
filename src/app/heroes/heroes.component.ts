@@ -12,10 +12,12 @@ import {Router} from '@angular/router';
 export class HeroesComponent implements OnInit {
   heroes: Hero[];
   selectedHero: Hero;
+  order: boolean;
   constructor(private router: Router, private heroService: HeroService) { }
 
   ngOnInit() {
     this.getHeroes();
+    this.order = false;
   }
 
   getHeroes(): void {
@@ -28,14 +30,29 @@ export class HeroesComponent implements OnInit {
     this.router.navigateByUrl('/heroEditor');
   }
 
-  triHeroNom() {
+  triHero(element) {
+    this.order = !this.order;
+    // si order true ascendant si false descendant
     // Trier les noms des héros par ordre alphabétique
     // Récupérer les noms dans un tab. et appliquer array.sort()
     // appliquer cette methode au click du bouton tri
     console.log('je rentre dans la fonction tri');
-    const array = [];
-    console.log(' this.getHeroes()',  this.getHeroes());
-    this.getHeroes();
+    console.log('heroes avant', this.heroes);
+    if (this.order) {
+      this.heroes.sort(function(h1, h2) {
+        return (h1[element] < h2[element]) ? 1 : -1;
+      });
+    } else {
+      this.heroes.sort(function(h1, h2) {
+        return (h2[element] <= h1[element]) ? 1 : -1;
+      });
+    }
+    console.log('heroes apres', this.heroes);
+
+    /*    items.sort(function (a, b) {
+          return a.value - b.valu  e;
+        });*/
+
   }
 
   deleteHero(id: string) {
