@@ -11,12 +11,44 @@
             <th scope="row">Nom
               <mat-chip color="primary" (click)="triArme('name')" type="submit" >Trier</mat-chip>
             </th>
+            <th scope="row">Attaque
+              <mat-chip color="primary" (click)="triArme('attaque')" type="submit" >Trier</mat-chip>
+            </th>
+            <th scope="row">Esquive
+              <mat-chip color="primary" (click)="triArme('esquive')" type="submit" >Trier</mat-chip>
+            </th>
+            <th scope="row">Dégâts
+              <mat-chip color="primary" (click)="triArme('degats')" type="submit" >Trier</mat-chip>
+            </th>
+            <th scope="row">Point de vie
+              <mat-chip color="primary" (click)="triArme('pointDeVie')" type="submit" >Trier</mat-chip>
+            </th>
           </tr>
           <tbody>
           <tr *ngFor="let arme of armes">
             <td>
               <a routerLink="/detailArme/{{arme.id}}">
                 <span class="badge">{{arme.name}}</span>
+              </a>
+            </td>
+            <td>
+              <a routerLink="/detailArme/{{arme.id}}">
+                <span class="badge">{{arme.attaque}}</span>
+              </a>
+            </td>
+            <td>
+              <a routerLink="/detailArme/{{arme.id}}">
+                <span class="badge">{{arme.esquive}}</span>
+              </a>
+            </td>
+            <td>
+              <a routerLink="/detailArme/{{arme.id}}">
+                <span class="badge">{{arme.degats}}</span>
+              </a>
+            </td>
+            <td>
+              <a routerLink="/detailArme/{{arme.id}}">
+                <span class="badge">{{arme.pointDeVie}}</span>
               </a>
             </td>
             <td>
