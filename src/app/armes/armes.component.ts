@@ -11,9 +11,11 @@ import {Router} from '@angular/router';
 })
 export class ArmesComponent implements OnInit {
   armes: Arme[];
+  order: boolean;
   constructor(private router: Router, private armeService: ArmeService) { }
   ngOnInit() {
     this.getArmes();
+    this.order = false;
   }
 
   getArmes(): void {
@@ -33,5 +35,18 @@ export class ArmesComponent implements OnInit {
 
   deleteArme(id: string) {
     this.armeService.deleteArme(id);
+  }
+
+  triArme(element) {
+    this.order = !this.order;
+    if (this.order) {
+      this.armes.sort(function(a1, a2) {
+        return (a1[element] < a2[element]) ? 1 : -1;
+      });
+    } else {
+      this.armes.sort(function(a1, a2) {
+        return (a2[element] <= a1[element]) ? 1 : -1;
+      });
+    }
   }
 }

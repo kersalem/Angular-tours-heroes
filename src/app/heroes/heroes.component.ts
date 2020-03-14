@@ -36,8 +36,8 @@ export class HeroesComponent implements OnInit {
     // Trier les noms des héros par ordre alphabétique
     // Récupérer les noms dans un tab. et appliquer array.sort()
     // appliquer cette methode au click du bouton tri
-    console.log('je rentre dans la fonction tri');
-    console.log('heroes avant', this.heroes);
+    // console.log('je rentre dans la fonction tri');
+    // console.log('heroes avant', this.heroes);
     if (this.order) {
       this.heroes.sort(function(h1, h2) {
         return (h1[element] < h2[element]) ? 1 : -1;
@@ -47,7 +47,7 @@ export class HeroesComponent implements OnInit {
         return (h2[element] <= h1[element]) ? 1 : -1;
       });
     }
-    console.log('heroes apres', this.heroes);
+    // console.log('heroes apres', this.heroes);
 
     /*    items.sort(function (a, b) {
           return a.value - b.valu  e;

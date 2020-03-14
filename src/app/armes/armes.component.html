@@ -8,16 +8,12 @@
 
         <table class="table table-dark">
           <tr>
-            <th scope="row">Id</th>
-            <th scope="row">Nom</th>
+            <th scope="row">Nom
+              <mat-chip color="primary" (click)="triArme('name')" type="submit" >Trier</mat-chip>
+            </th>
           </tr>
           <tbody>
           <tr *ngFor="let arme of armes">
-            <td>
-              <a routerLink="/detailArme/{{arme.id}}">
-                <span class="badge">{{arme.id}}</span>
-              </a>
-            </td>
             <td>
               <a routerLink="/detailArme/{{arme.id}}">
                 <span class="badge">{{arme.name}}</span>

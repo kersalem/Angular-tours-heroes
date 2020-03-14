@@ -7,7 +7,6 @@
 
         <table class="table table-dark col-12 justify-content-start">
           <tr>
-            <th scope="row">Id</th>
             <th scope="row">Nom
               <mat-chip color="primary" type="submit" (click)="triHero('attaque')" selected>Trier</mat-chip>
             </th>
@@ -15,11 +14,6 @@
           </tr>
           <tbody>
           <tr *ngFor="let hero of heroes">
-            <td>
-              <a routerLink="/detailHero/{{hero.id}}">
-                <span class="badge">{{hero.id}}</span>
-              </a>
-            </td>
             <td>
               <a routerLink="/detailHero/{{hero.id}}">
                 <span class="badge">{{hero.name}}</span>

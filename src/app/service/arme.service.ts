@@ -20,6 +20,7 @@ export class ArmeService {
 /*
     this.messageService.add('ArmeService: fetched armes');
 */
+
     return this.db.collection<Arme>(ArmeService.url)
       .snapshotChanges()
       .pipe(
