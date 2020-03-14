@@ -78,7 +78,7 @@ export class ArmeEditorComponent implements OnInit {
       this.profileForm.get('degats').value +
       this.profileForm.get('pointDeVie').value;
     if (totalPoints !== 0) {
-      this.message = 'erreur totale' + totalPoints;
+      this.message = 'Le total doit être égal à 0 et ' + totalPoints + ' est non conforme';
     } else {
       this.message = '';
     }

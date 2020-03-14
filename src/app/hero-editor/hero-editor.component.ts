@@ -86,7 +86,7 @@ export class HeroEditorComponent implements OnInit {
       this.profileForm.get('degats').value +
       this.profileForm.get('pointDeVie').value;
     if (totalPoints > 40) {
-      this.message = 'erreur totale' + totalPoints;
+      this.message = 'Le total doit être supérieur à 4 et inférieur à 41 et non ' + totalPoints;
     } else {
       this.message = '';
     }

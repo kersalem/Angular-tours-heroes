@@ -3,7 +3,7 @@
     <div  class="row justify-content-center no-gutters mb-5 mb-lg-0">
       <div class="col-9">
         <h2>{{ (getArme) ? 'Editer ' + getArme.name :'Ajouter une nouvelle arme' }}</h2>
-        <app-messages></app-messages>
+        <div *ngIf="message !== '' " class="alert alert-danger">{{ message }}</div>
         <form [formGroup]="profileForm">
           <div class="form-group">
             <label>Nom : </label>
@@ -27,7 +27,7 @@
               Attaque entre -5 et 5.
             </div>
           </div>
-<!--          <div *ngIf="profileForm.controls['attaque'].invalid &&
+          <!-- <div *ngIf="profileForm.controls['attaque'].invalid &&
             (profileForm.controls['attaque'].dirty ||
             profileForm.controls['attaque'].touched)"
             class="alert alert-danger">
@@ -80,7 +80,3 @@
     </div>
   </div>
 </section>
-
-
-
-<!--attaque.value <-6 || attaque.value > 6-->

@@ -9,7 +9,9 @@
           <div class="groups">
             <label>Nom :</label>
               <input type="text" [ngModel]="(getHero) ? getHero.name :'' " formControlName="name" class="form-control" required>
-          <div *ngIf="profileForm.controls['name'].invalid && (profileForm.controls['name'].dirty || profileForm.controls['name'].touched)" class="alert alert-danger">
+          <div *ngIf="profileForm.controls['name'].invalid &&
+            (profileForm.controls['name'].dirty ||
+            profileForm.controls['name'].touched)" class="alert alert-danger">
             <div *ngIf="profileForm.controls['name'].errors.required">
               Saisir votre nom.
             </div>
