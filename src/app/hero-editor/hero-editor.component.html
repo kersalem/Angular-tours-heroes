@@ -11,7 +11,7 @@
               <input type="text" [ngModel]="(getHero) ? getHero.name :'' " formControlName="name" class="form-control" required>
           <div *ngIf="profileForm.controls['name'].invalid && (profileForm.controls['name'].dirty || profileForm.controls['name'].touched)" class="alert alert-danger">
             <div *ngIf="profileForm.controls['name'].errors.required">
-              Name is required.
+              Saisir votre nom.
             </div>
           </div>
             <label>Attaque :</label>
@@ -23,7 +23,7 @@
                 class="form-control"
                 (change)="limitNumber()">
             <div class="alert alert-danger" *ngIf="attaque.value <1 || attaque.value >37">
-              Attaque is required.
+              Attaque entre 1 et 37.
             </div>
             <label>Esquive:</label>
               <input
@@ -34,7 +34,7 @@
                 class="form-control"
                 (change)="limitNumber()">
             <div class="alert alert-danger" *ngIf="esquive.value <1 || esquive.value >37">
-              Esquive is required.
+              Esquive entre 1 et 37.
             </div>
             <label>Degats :</label>
               <input
@@ -46,7 +46,7 @@
                 (change)="limitNumber()"
               >
             <div class="alert alert-danger" *ngIf="degats.value <1 || degats.value >37">
-              Degats is required.
+              Dégâts entre 1 et 37.
             </div>
             <label>Point de vie: </label>
             <input
@@ -57,7 +57,7 @@
               class="form-control"
               (change)="limitNumber()">
             <div class="alert alert-danger" *ngIf="pointDeVie.value <1 || pointDeVie.value >37">
-              pointDeVie is required.
+              Point de vie entre 1 et 37..
             </div>
           <button [disabled]="!profileForm.valid || totalPoints === 40 || totalPoints < 1 || !ifCorrect"
                   class="btn btn-primary"

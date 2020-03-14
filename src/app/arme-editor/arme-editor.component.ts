@@ -72,35 +72,16 @@ export class ArmeEditorComponent implements OnInit {
       this.messageService.add('Le total doit être égal à 0');
     }
   }
-  limitNumber(caracteristique, numberEdit) {
-    switch (caracteristique) {
-      case 'attaque':
-        this.attaqueValid = (numberEdit > -6 && numberEdit < 6);
-        if (numberEdit < -5 || numberEdit > 5) {
-          this.messageService.add('Choisissez un chifre en -5 et 5');
-        }
-        break;
-      case 'esquive':
-        this.esquiveValid = (numberEdit > -6 && numberEdit < 6);
-        if (numberEdit < -5 || numberEdit > 5) {
-          this.messageService.add('Choisissez un chifre en -5 et 5');
-        }
-        break;
-      case 'degats':
-        this.degatsValid = (numberEdit > -6 && numberEdit < 6);
-        if (numberEdit < -5 || numberEdit > 5) {
-          this.messageService.add('Choisissez un chifre en -5 et 5');
-        }
-        break;
-      case 'pointDeVie':
-        this.pvValid = (numberEdit > -6 && numberEdit < 6);
-        if (numberEdit < -5 || numberEdit > 5) {
-          this.messageService.add('Choisissez un chifre en -5 et 5');
-        }
-        break;
-      default:
+  limitNumber() {
+    const totalPoints = this.profileForm.get('attaque').value +
+      this.profileForm.get('esquive').value +
+      this.profileForm.get('degats').value +
+      this.profileForm.get('pointDeVie').value;
+    if (totalPoints !== 0) {
+      this.message = 'erreur totale' + totalPoints;
+    } else {
+      this.message = '';
     }
-    this.ifCorrect = this.attaqueValid && this.esquiveValid && this.degatsValid && this.pvValid;
   }
 
 }

@@ -81,7 +81,10 @@ export class HeroEditorComponent implements OnInit {
   }
   limitNumber() {
     // je recupere les saisies du form
-    const totalPoints = this.profileForm.get('attaque').value + this.profileForm.get('esquive').value + this.profileForm.get('degats').value + this.profileForm.get('pointDeVie').value;
+    const totalPoints = this.profileForm.get('attaque').value +
+      this.profileForm.get('esquive').value +
+      this.profileForm.get('degats').value +
+      this.profileForm.get('pointDeVie').value;
     if (totalPoints > 40) {
       this.message = 'erreur totale' + totalPoints;
     } else {
