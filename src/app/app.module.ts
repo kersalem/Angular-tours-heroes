@@ -43,25 +43,26 @@ import {
     ArmeDetailComponent,
     ArmeEditorComponent
   ],
-  imports: [
-    BrowserModule,
-    FormsModule,
-    AppRoutingModule,
-    ReactiveFormsModule,
-    AngularFireModule.initializeApp(environment.firebase),
-    AngularFirestoreModule,
-    // AngularFireAnalyticsModule, // dynamically imports firebase/analytics
-    NoopAnimationsModule,
-    // imports firebase/firestore, only needed for database features
-    // AngularFireAuthModule, // imports firebase/auth, only needed for auth features,
-    // AngularFireStorageModule // imports firebase/storage only needed for storage features
-    MatMenuModule,
-    MatToolbarModule,
-    MatIconModule,
-    MatButtonModule,
-    MatChipsModule,
-    MatFormFieldModule,
-  ],
+    imports: [
+        BrowserModule,
+        FormsModule,
+        AppRoutingModule,
+        ReactiveFormsModule,
+        AngularFireModule.initializeApp(environment.firebase),
+        AngularFirestoreModule,
+        // AngularFireAnalyticsModule, // dynamically imports firebase/analytics
+        NoopAnimationsModule,
+        // imports firebase/firestore, only needed for database features
+        // AngularFireAuthModule, // imports firebase/auth, only needed for auth features,
+        // AngularFireStorageModule // imports firebase/storage only needed for storage features
+        MatMenuModule,
+        MatToolbarModule,
+        MatIconModule,
+        MatButtonModule,
+        MatChipsModule,
+        MatFormFieldModule,
+        MatListModule,
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

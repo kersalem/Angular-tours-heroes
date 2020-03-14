@@ -2,36 +2,34 @@
   <div class="container">
     <div  class="row justify-content-center no-gutters mb-5 mb-lg-0">
       <div class="col-9">
-        <div *ngIf="hero">
-          <h2>{{hero.name | uppercase}} Details</h2>
-            <div>
-              <div>name:
-                <div> {{ hero.name }}</div>
-              </div>
-              <div>arme:
-                <div *ngIf="arme"> {{arme.name }}</div>
-              </div>
-              <div>attaque:
-                <div> {{ hero.attaque }}</div>
-              </div>
-              <div>esquive:
-                <div> {{ hero.esquive }}</div>
-              </div>
-              <div>degats:
-                <div> {{ hero.degats }}</div>
-              </div>
-              <div>Points de vie:
-                <div>
-                  {{ hero.pointDeVie }}
-                </div>
-              </div>
-            </div>
+
+        <mat-list-item>
+          <mat-list *ngIf="hero">
+            <h2>{{hero.name | uppercase}} Details</h2>
+            <mat-list-item><b>name :  </b>{{ hero.name }}
+            </mat-list-item>
+
+            <mat-list-item *ngIf="arme"><b>arme : </b>{{arme.name }}
+            </mat-list-item>
+
+            <mat-list-item><b>attaque : </b>{{ hero.attaque }}
+            </mat-list-item>
+
+            <mat-list-item><b>esquive : </b>{{ hero.esquive }}
+            </mat-list-item>
+
+            <mat-list-item><b>degats : </b>{{ hero.degats }}
+            </mat-list-item>
+
+            <mat-list-item><b>Points de vie : </b>{{ hero.pointDeVie }}
+            </mat-list-item>
+          </mat-list>
+          </mat-list-item>
         </div>
-      </div>
+      <mat-chip-list aria-label="Fish selection">
+        <mat-chip color="primary" type="submit" (click)="goBack()" selected>Retour</mat-chip>
+      </mat-chip-list>
     </div>
   </div>
-  <mat-chip-list aria-label="Fish selection">
-  <mat-chip color="primary" type="submit" (click)="goBack()" selected>Retour</mat-chip>
-  </mat-chip-list>
 </section>
 
