@@ -27,6 +27,7 @@ export class HeroEditorComponent implements OnInit {
   degatsValid: boolean;
   pvValid: boolean;
   message: string;
+  pointsRestant: number;
 
   constructor(private router: Router, private heroService: HeroService, private messageService: MessageService) { }
   getHeroes(): void {
@@ -41,11 +42,16 @@ export class HeroEditorComponent implements OnInit {
     this.esquiveValid = true;
     this.degatsValid = true;
     this.pvValid = true;
+    this.pointsRestant = 36;
     this.message = '';
     if (this.heroService.idHero) {
       // subscribe voir le resultat de la fonction
       // Recp données d'un hero à modifier
-      this.heroService.getHero(this.heroService.idHero).subscribe(value => this.getHero = value);
+      this.heroService.getHero(this.heroService.idHero).subscribe(
+        value => {
+          this.getHero = value;
+          this.pointsRestant = 40 - this.getHero.attaque - this.getHero.esquive - this.getHero.degats - this.getHero.pointDeVie;
+        });
       // REINITIALISER Le idHero
       this.heroService.idHero = null;
       console.log('this.totalPoints', this.totalPoints);
@@ -54,15 +60,11 @@ export class HeroEditorComponent implements OnInit {
   saveHero() {
     const hero = new Hero();
     // recup valeur du formulaire
-    this.totalPoints = 0;
     hero.name = this.profileForm.get('name').value;
     hero.attaque = this.profileForm.get('attaque').value;
     hero.esquive = this.profileForm.get('esquive').value;
     hero.degats = this.profileForm.get('degats').value;
     hero.pointDeVie = this.profileForm.get('pointDeVie').value;
-    this.totalPoints = hero.attaque.valueOf() + hero.esquive.valueOf() + hero.degats.valueOf() + hero.pointDeVie.valueOf();
-    console.log(typeof this.profileForm.get('attaque').value);
-    console.log('total P', this.totalPoints);
 
     if (this.totalPoints > 1 && this.totalPoints < 40) {
       // Si hero à modifier
@@ -81,12 +83,14 @@ export class HeroEditorComponent implements OnInit {
   }
   limitNumber() {
     // je recupere les saisies du form
-    const totalPoints = this.profileForm.get('attaque').value +
+    this.totalPoints = this.profileForm.get('attaque').value +
       this.profileForm.get('esquive').value +
       this.profileForm.get('degats').value +
       this.profileForm.get('pointDeVie').value;
-    if (totalPoints > 40) {
-      this.message = 'Le total doit être supérieur à 4 et inférieur à 41 et non ' + totalPoints;
+    this.pointsRestant = 40 - this.totalPoints;
+    console.log('', );
+    if (this.totalPoints > 40) {
+      this.message = 'Le total doit être supérieur à 4 et inférieur à 41 et non ' + this.totalPoints;
     } else {
       this.message = '';
     }
