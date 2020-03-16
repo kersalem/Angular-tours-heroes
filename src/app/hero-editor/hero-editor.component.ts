@@ -32,6 +32,7 @@ export class HeroEditorComponent implements OnInit {
   message: string;
   pointsRestant: number;
   armes: Arme[];
+  armeHero: Arme;
   constructor(private router: Router, private heroService: HeroService, private armeService: ArmeService,  private messageService: MessageService) { }
   getHeroes(): void {
     this.heroService.getHeroes()
@@ -40,6 +41,14 @@ export class HeroEditorComponent implements OnInit {
   getArmes(): void {
     this.armeService.getArmes()
       .subscribe(armes => this.armes = armes);
+  }
+  getArmeCaracteristiques(event): void {
+    this.armeHero = null;
+    if (event.value !== '') {
+      console.log('event', event);
+      this.armeService.getArme(event.value)
+        .subscribe(armeHero => this.armeHero = armeHero);
+    }
   }
   ngOnInit(): void {
     this.profileForm.get('attaque').setValue(1);
@@ -78,14 +87,12 @@ export class HeroEditorComponent implements OnInit {
     console.log('this.pointsRestant', this.pointsRestant);
     if (this.pointsRestant >= 0 && this.pointsRestant <= 36) {
       // Si hero à modifier
-      console.log('iffffffffffffffffffffffffffffff');
       if (this.getHero) {
         hero.id = this.getHero.id;
         console.log('updateHero');
         this.heroService.updateHero(this.getHero, hero);
         this.router.navigateByUrl('/heroes');
       } else {
-        console.log('addHerooooooooooooooo');
         // sinon l'ajoute
         this.heroService.addHero(hero);
         this.router.navigateByUrl('/heroes');
