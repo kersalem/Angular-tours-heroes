@@ -4,6 +4,8 @@ import { HeroService } from '../service/hero.service';
 import { Hero } from '../data/Hero';
 import {Router} from '@angular/router';
 import {MessageService} from '../service/message.service';
+import {ArmeService} from '../service/arme.service';
+import {Arme} from '../data/Arme';
 
 @Component({
   selector: 'app-hero-editor',
@@ -17,6 +19,7 @@ export class HeroEditorComponent implements OnInit {
     esquive: new FormControl(0),
     degats: new FormControl(0),
     pointDeVie: new FormControl(0),
+    arme: new FormControl(''),
   });
   heroes: Hero[];
   getHero: Hero;
@@ -28,15 +31,20 @@ export class HeroEditorComponent implements OnInit {
   pvValid: boolean;
   message: string;
   pointsRestant: number;
-
-  constructor(private router: Router, private heroService: HeroService, private messageService: MessageService) { }
+  armes: Arme[];
+  constructor(private router: Router, private heroService: HeroService, private armeService: ArmeService,  private messageService: MessageService) { }
   getHeroes(): void {
     this.heroService.getHeroes()
       .subscribe(heroes => this.heroes = heroes);
   }
+  getArmes(): void {
+    this.armeService.getArmes()
+      .subscribe(armes => this.armes = armes);
+  }
   ngOnInit(): void {
     this.profileForm.get('attaque').setValue(1);
     this.getHeroes();
+    this.getArmes();
     this.ifCorrect = true;
     this.attaqueValid = true;
     this.esquiveValid = true;
@@ -50,6 +58,7 @@ export class HeroEditorComponent implements OnInit {
       this.heroService.getHero(this.heroService.idHero).subscribe(
         value => {
           this.getHero = value;
+          console.log('this.getHeroes', this.getHero);
           this.pointsRestant = 40 - this.getHero.attaque - this.getHero.esquive - this.getHero.degats - this.getHero.pointDeVie;
         });
       // REINITIALISER Le idHero
@@ -65,14 +74,18 @@ export class HeroEditorComponent implements OnInit {
     hero.esquive = this.profileForm.get('esquive').value;
     hero.degats = this.profileForm.get('degats').value;
     hero.pointDeVie = this.profileForm.get('pointDeVie').value;
-
-    if (this.totalPoints > 1 && this.totalPoints < 40) {
+    hero.id_arme = this.profileForm.get('arme').value;
+    console.log('this.pointsRestant', this.pointsRestant);
+    if (this.pointsRestant >= 0 && this.pointsRestant <= 36) {
       // Si hero à modifier
+      console.log('iffffffffffffffffffffffffffffff');
       if (this.getHero) {
         hero.id = this.getHero.id;
+        console.log('updateHero');
         this.heroService.updateHero(this.getHero, hero);
         this.router.navigateByUrl('/heroes');
       } else {
+        console.log('addHerooooooooooooooo');
         // sinon l'ajoute
         this.heroService.addHero(hero);
         this.router.navigateByUrl('/heroes');

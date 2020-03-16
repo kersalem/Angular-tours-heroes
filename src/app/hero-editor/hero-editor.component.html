@@ -61,6 +61,9 @@
             <div class="alert alert-danger" *ngIf="pointDeVie.value <1 || pointDeVie.value >37">
               Point de vie entre 1 et 37..
             </div>
+            <select formControlName="arme" [ngModel]="(getHero) ? getHero.id_arme : ''">
+              <option *ngFor="let arme of armes" [value]="arme.id">{{ arme.name }}</option>
+            </select>
           <button [disabled]="!profileForm.valid || totalPoints === 40 || totalPoints < 1 || !ifCorrect"
                   class="btn btn-primary"
                   type="submit"
