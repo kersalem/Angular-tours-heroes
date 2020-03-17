@@ -4,7 +4,7 @@
       <div class="col-6">
 
         <h3>My Heroes</h3>
-
+        <input type="text" (change)="saisiesFilter($event.target)">
         <table class="table table-dark col-12 justify-content-start">
           <tr>
             <th scope="row">Nom
@@ -25,7 +25,7 @@
             <th scope="row">Actions</th>
           </tr>
           <tbody>
-          <tr *ngFor="let hero of heroes">
+          <tr *ngFor="let hero of heroFilter">
             <td>
               <a routerLink="/detailHero/{{hero.id}}">
                 <span class="badge">{{hero.name}}</span>

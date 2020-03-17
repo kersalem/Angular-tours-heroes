@@ -11,6 +11,7 @@ import {Router} from '@angular/router';
 })
 export class HeroesComponent implements OnInit {
   heroes: Hero[];
+  heroFilter: Hero[];
   selectedHero: Hero;
   order: boolean;
   constructor(private router: Router, private heroService: HeroService) { }
@@ -22,7 +23,7 @@ export class HeroesComponent implements OnInit {
 
   getHeroes(): void {
     this.heroService.getHeroes()
-      .subscribe(heroes => this.heroes = heroes);
+      .subscribe(heroes => { this.heroes = heroes; this.heroFilter = heroes; } );
   }
 
   updateHero(id: string) {
@@ -39,12 +40,12 @@ export class HeroesComponent implements OnInit {
     // console.log('je rentre dans la fonction tri');
     // console.log('heroes avant', this.heroes);
     if (this.order) {
-      this.heroes.sort(function(h1, h2) {
+      this.heroFilter.sort(function(h1, h2) {
         return (h1[element] < h2[element]) ? 1 : -1;
       });
     } else {
-      this.heroes.sort(function(h1, h2) {
-        return (h2[element] <= h1[element]) ? 1 : -1;
+      this.heroFilter.sort(function(h1, h2) {
+        return (h2[element] < h1[element]) ? 1 : -1;
       });
     }
     // console.log('heroes apres', this.heroes);
@@ -53,6 +54,14 @@ export class HeroesComponent implements OnInit {
           return a.value - b.valu  e;
         });*/
 
+  }
+  saisiesFilter(event) {
+    this.heroFilter = [];
+    for (const heroF of this.heroes) {
+      if (heroF.name.indexOf(event.value) === 0) {
+        this.heroFilter.push(heroF);
+      }
+    }
   }
 
   deleteHero(id: string) {
