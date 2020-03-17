@@ -28,7 +28,7 @@
                   formControlName="attaque"
                   class="form-control"
                   (change)="limitNumber()">
-              <p *ngIf="armeHero">+ {{ armeHero.attaque }}</p>
+              <p *ngIf="armeHero" style="color: grey;">+ {{ armeHero.attaque }} avec l'arme {{ armeHero.name }}</p>
               <div class="alert alert-danger" *ngIf="attaque.value <1 || attaque.value >37">
                 Attaque entre 1 et 37.
               </div>
@@ -42,6 +42,7 @@
                   formControlName="esquive"
                   class="form-control"
                   (change)="limitNumber()">
+              <p *ngIf="armeHero" style="color: grey;">+ {{ armeHero.esquive }} avec l'arme {{ armeHero.name }}</p>
               <div class="alert alert-danger" *ngIf="esquive.value <1 || esquive.value >37">
                 Esquive entre 1 et 37.
               </div>
@@ -56,6 +57,7 @@
                 class="form-control"
                 (change)="limitNumber()"
               >
+              <p *ngIf="armeHero" style="color: grey;">+ {{ armeHero.degats }} avec l'arme {{ armeHero.name }}</p>
               <div class="alert alert-danger" *ngIf="degats.value <1 || degats.value >37">
                 Dégâts entre 1 et 37.
               </div>
@@ -69,6 +71,7 @@
                 formControlName="pointDeVie"
                 class="form-control"
                 (change)="limitNumber()">
+              <p *ngIf="armeHero" style="color: grey;"><b>+</b> {{ armeHero.pointDeVie }} avec l'arme {{ armeHero.name }}</p>
               <div class="alert alert-danger" *ngIf="pointDeVie.value <1 || pointDeVie.value >37">
                 Point de vie entre 1 et 37..
               </div>
