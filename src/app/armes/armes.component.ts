@@ -11,6 +11,7 @@ import {Router} from '@angular/router';
 })
 export class ArmesComponent implements OnInit {
   armes: Arme[];
+  armeFilter: Arme[];
   order: boolean;
   constructor(private router: Router, private armeService: ArmeService) { }
   ngOnInit() {
@@ -20,13 +21,8 @@ export class ArmesComponent implements OnInit {
 
   getArmes(): void {
    this.armeService.getArmes()
-      .subscribe(armes => this.armes = armes);
+      .subscribe(armes => { this.armes = armes; this.armeFilter = armes; });
   }
-
-/*  getArmes(): void {
-    this.armeService.getArmes()
-      .subscribe(armes => {this.armes = armes; methode});
-  }*/
 
   updateArme(id: string) {
     this.armeService.idArme = id;
@@ -40,13 +36,21 @@ export class ArmesComponent implements OnInit {
   triArme(element) {
     this.order = !this.order;
     if (this.order) {
-      this.armes.sort(function(a1, a2) {
+      this.armeFilter.sort(function(a1, a2) {
         return (a1[element] < a2[element]) ? 1 : -1;
       });
     } else {
-      this.armes.sort(function(a1, a2) {
-        return (a2[element] <= a1[element]) ? 1 : -1;
+      this.armeFilter.sort(function(a1, a2) {
+        return (a2[element] < a1[element]) ? 1 : -1;
       });
+    }
+  }
+  saisiesFilter(event) {
+    this.armeFilter = [];
+    for (const armeF of this.armes) {
+      if (armeF.name.indexOf(event.value) === 0) {
+        this.armeFilter.push(armeF);
+      }
     }
   }
 }
