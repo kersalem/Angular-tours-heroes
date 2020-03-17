@@ -3,43 +3,51 @@
     <div  class="row justify-content-center no-gutters mb-5 mb-lg-0">
       <div class="col-9">
         <h2>{{ (getHero) ? 'Editer ' + getHero.name :'Ajouter un nouvel héro' }}</h2>
-        <div>Vous pouvez distribuer jusqu'à 40 au total, il vous reste  :*** {{ pointsRestant }}*** de points</div>
+        <div>Vous pouvez distribuer jusqu'à 40 au total.<br /> Il vous reste <b>{{ pointsRestant }} </b> de points.</div>
         <div *ngIf="message !== '' " class="alert alert-danger">{{ message }}</div>
         <form [formGroup]="profileForm">
           <div class="groups">
-            <label>Nom :</label>
+            <br />
+            <div class="form-group">
+              <label>Nom :</label>
               <input type="text" [ngModel]="(getHero) ? getHero.name :'' " formControlName="name" class="form-control" required>
-            <div *ngIf="profileForm.controls['name'].invalid &&
-            (profileForm.controls['name'].dirty ||
-            profileForm.controls['name'].touched)" class="alert alert-danger">
-            <div *ngIf="profileForm.controls['name'].errors.required">
-              Saisir votre nom.
+              <div *ngIf="profileForm.controls['name'].invalid &&
+              (profileForm.controls['name'].dirty ||
+              profileForm.controls['name'].touched)" class="alert alert-danger">
+                <div *ngIf="profileForm.controls['name'].errors.required">
+                  Saisir votre nom.
+                </div>
+              </div>
             </div>
-          </div>
-            <label>Attaque :</label>
-            <input
-                #attaque
-                type="number"
-                [ngModel]="(getHero) ? getHero.attaque : 1 "
-                formControlName="attaque"
-                class="form-control"
-                (change)="limitNumber()">
-            <p *ngIf="armeHero">+ {{ armeHero.attaque }}</p>
-            <div class="alert alert-danger" *ngIf="attaque.value <1 || attaque.value >37">
-              Attaque entre 1 et 37.
-            </div>
-            <label>Esquive:</label>
+            <div class="form-group">
+              <label>Attaque :</label>
               <input
-                #esquive
-                type="number"
-                [ngModel]="(getHero) ? getHero.esquive : 1 "
-                formControlName="esquive"
-                class="form-control"
-                (change)="limitNumber()">
-            <div class="alert alert-danger" *ngIf="esquive.value <1 || esquive.value >37">
-              Esquive entre 1 et 37.
+                  #attaque
+                  type="number"
+                  [ngModel]="(getHero) ? getHero.attaque : 1 "
+                  formControlName="attaque"
+                  class="form-control"
+                  (change)="limitNumber()">
+              <p *ngIf="armeHero">+ {{ armeHero.attaque }}</p>
+              <div class="alert alert-danger" *ngIf="attaque.value <1 || attaque.value >37">
+                Attaque entre 1 et 37.
+              </div>
             </div>
-            <label>Degats :</label>
+            <div class="form-group">
+              <label>Esquive:</label>
+                <input
+                  #esquive
+                  type="number"
+                  [ngModel]="(getHero) ? getHero.esquive : 1 "
+                  formControlName="esquive"
+                  class="form-control"
+                  (change)="limitNumber()">
+              <div class="alert alert-danger" *ngIf="esquive.value <1 || esquive.value >37">
+                Esquive entre 1 et 37.
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Degats :</label>
               <input
                 #degats
                 type="number"
@@ -48,24 +56,29 @@
                 class="form-control"
                 (change)="limitNumber()"
               >
-            <div class="alert alert-danger" *ngIf="degats.value <1 || degats.value >37">
-              Dégâts entre 1 et 37.
+              <div class="alert alert-danger" *ngIf="degats.value <1 || degats.value >37">
+                Dégâts entre 1 et 37.
+              </div>
             </div>
-            <label>Point de vie: </label>
-            <input
-              #pointDeVie
-              type="number"
-              [ngModel]="(getHero) ? getHero.pointDeVie : 1 "
-              formControlName="pointDeVie"
-              class="form-control"
-              (change)="limitNumber()">
-            <div class="alert alert-danger" *ngIf="pointDeVie.value <1 || pointDeVie.value >37">
-              Point de vie entre 1 et 37..
+            <div class="form-group">
+              <label>Point de vie: </label>
+              <input
+                #pointDeVie
+                type="number"
+                [ngModel]="(getHero) ? getHero.pointDeVie : 1 "
+                formControlName="pointDeVie"
+                class="form-control"
+                (change)="limitNumber()">
+              <div class="alert alert-danger" *ngIf="pointDeVie.value <1 || pointDeVie.value >37">
+                Point de vie entre 1 et 37..
+              </div>
             </div>
-            <select formControlName="arme" [ngModel]="(getHero) ? getHero.id_arme : ''" (change)="getArmeCaracteristiques($event.target)">
-              <option  [value]="''"></option>
-              <option *ngFor="let arme of armes" [value]="arme.id">{{ arme.name }}</option>
-            </select>
+            <div class="form-group"> Choisir son arme :
+              <select class="form-control" formControlName="arme" [ngModel]="(getHero) ? getHero.id_arme : ''" (change)="getArmeCaracteristiques($event.target)">
+                <option  [value]="''"></option>
+                <option *ngFor="let arme of armes" [value]="arme.id">{{ arme.name }}</option>
+              </select>
+            </div>
           <button [disabled]="!profileForm.valid || totalPoints === 40 || totalPoints < 1 || !ifCorrect"
                   class="btn btn-primary"
                   type="submit"
