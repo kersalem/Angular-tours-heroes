@@ -32,28 +32,26 @@ export class HeroesComponent implements OnInit {
   }
 
   triHero(element) {
-    this.order = !this.order;
+      this.order = !this.order;
     // si order true ascendant si false descendant
     // Trier les noms des héros par ordre alphabétique
     // Récupérer les noms dans un tab. et appliquer array.sort()
     // appliquer cette methode au click du bouton tri
     // console.log('je rentre dans la fonction tri');
     // console.log('heroes avant', this.heroes);
-    if (this.order) {
+      if (this.order) {
       this.heroFilter.sort(function(h1, h2) {
-        return (h1[element] < h2[element]) ? 1 : -1;
+        if (h1[element] !== h2[element]) {
+          return (h1[element] < h2[element]) ? 1 : -1;
+        }
       });
     } else {
       this.heroFilter.sort(function(h1, h2) {
-        return (h2[element] < h1[element]) ? 1 : -1;
+        if (h1[element] !== h2[element]) {
+          return (h2[element] < h1[element]) ? 1 : -1;
+        }
       });
     }
-    // console.log('heroes apres', this.heroes);
-
-    /*    items.sort(function (a, b) {
-          return a.value - b.valu  e;
-        });*/
-
   }
   saisiesFilter(event) {
     this.heroFilter = [];
@@ -67,10 +65,4 @@ export class HeroesComponent implements OnInit {
   deleteHero(id: string) {
     this.heroService.deleteHero(id);
   }
-  // TOut supprimer - tab. vide
-  //
-/*  onSelect(hero: Hero): void {
-    this.selectedHero = hero;
-    this.messageService.add(`HeroService: Selected hero id=${hero.id}`);
-  }*/
 }

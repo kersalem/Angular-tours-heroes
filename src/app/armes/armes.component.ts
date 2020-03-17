@@ -37,11 +37,15 @@ export class ArmesComponent implements OnInit {
     this.order = !this.order;
     if (this.order) {
       this.armeFilter.sort(function(a1, a2) {
-        return (a1[element] < a2[element]) ? 1 : -1;
+        if (a1[element] !== a2[element]) {
+          return (a1[element] < a2[element]) ? 1 : -1;
+        }
       });
     } else {
       this.armeFilter.sort(function(a1, a2) {
-        return (a2[element] < a1[element]) ? 1 : -1;
+        if (a2[element] !== a1[element]) {
+          return (a2[element] < a1[element]) ? 1 : -1;
+        }
       });
     }
   }
