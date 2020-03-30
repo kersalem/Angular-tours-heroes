@@ -21,13 +21,14 @@
             <mat-list-item><b>Points de vie : </b> {{ hero.pointDeVie }}
             </mat-list-item>
 
-            <mat-list-item *ngIf="arme"><b>Arme : </b>{{arme.name }}
-            </mat-list-item>
-            <mat-list-item><b>Caractéristiques "{{arme.name }}" : </b></mat-list-item>
-            <mat-list-item>Attaque : {{ arme.attaque }}</mat-list-item>
-            <mat-list-item>Esquive : {{ arme.esquive }}</mat-list-item>
-            <mat-list-item>Degats : {{ arme.degats }}</mat-list-item>
-            <mat-list-item>Point de vie : {{ arme.pointDeVie }}</mat-list-item>
+            <mat-list-item *ngIf="arme"><b>Arme : </b>{{ arme.name }}</mat-list-item>
+            <mat-list-item *ngIf="arme"><b>Caractéristiques "{{ arme.name }}" : </b></mat-list-item>
+            <mat-list-item *ngIf="arme">Attaque : {{ arme.attaque }}</mat-list-item>
+            <mat-list-item *ngIf="arme">Esquive : {{ arme.esquive }}</mat-list-item>
+            <mat-list-item *ngIf="arme">Degats : {{ arme.degats }}</mat-list-item>
+            <mat-list-item *ngIf="arme">Point de vie : {{ arme.pointDeVie }}</mat-list-item>
+
+            <mat-list-item *ngIf="!arme">Pas d'arme</mat-list-item>
 
           </mat-list>
           </mat-list-item>

@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { HeroService } from '../service/hero.service';
 import { Hero } from '../data/Hero';
-import {Router} from '@angular/router';
 import {MessageService} from '../service/message.service';
 import {ArmeService} from '../service/arme.service';
 import {Arme} from '../data/Arme';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-hero-editor',
@@ -33,7 +33,10 @@ export class HeroEditorComponent implements OnInit {
   pointsRestant: number;
   armes: Arme[];
   armeHero: Arme;
-  constructor(private router: Router, private heroService: HeroService, private armeService: ArmeService,  private messageService: MessageService) { }
+  constructor(private router: Router,
+              private heroService: HeroService,
+              private armeService: ArmeService,
+              private messageService: MessageService) { }
   getHeroes(): void {
     this.heroService.getHeroes()
       .subscribe(heroes => this.heroes = heroes);
@@ -62,7 +65,6 @@ export class HeroEditorComponent implements OnInit {
     this.pointsRestant = 36;
     this.message = '';
     if (this.heroService.idHero) {
-      // subscribe voir le resultat de la fonction
       // Recp données d'un hero à modifier
       this.heroService.getHero(this.heroService.idHero).subscribe(
         value => {
@@ -72,7 +74,6 @@ export class HeroEditorComponent implements OnInit {
         });
       // REINITIALISER Le idHero
       this.heroService.idHero = null;
-      console.log('this.totalPoints', this.totalPoints);
     }
   }
   saveHero() {
@@ -84,12 +85,10 @@ export class HeroEditorComponent implements OnInit {
     hero.degats = this.profileForm.get('degats').value;
     hero.pointDeVie = this.profileForm.get('pointDeVie').value;
     hero.id_arme = this.profileForm.get('arme').value;
-    console.log('this.pointsRestant', this.pointsRestant);
     if (this.pointsRestant >= 0 && this.pointsRestant <= 36) {
       // Si hero à modifier
       if (this.getHero) {
         hero.id = this.getHero.id;
-        console.log('updateHero');
         this.heroService.updateHero(this.getHero, hero);
         this.router.navigateByUrl('/heroes');
       } else {
@@ -108,12 +107,10 @@ export class HeroEditorComponent implements OnInit {
       this.profileForm.get('degats').value +
       this.profileForm.get('pointDeVie').value;
     this.pointsRestant = 40 - this.totalPoints;
-    console.log('', );
     if (this.totalPoints > 40) {
       this.message = 'Le total doit être supérieur à 4 et inférieur à 41 et non ' + this.totalPoints;
     } else {
       this.message = '';
     }
   }
-  // attaque: number, esquive: number, degats: number, pointDeVie: number
 }

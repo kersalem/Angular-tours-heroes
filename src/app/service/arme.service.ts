@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 
 import { Arme } from '../data/arme';
 import { MessageService } from './message.service';
-import { ARMES } from '../data/mock-armes';
 import {AngularFirestore, AngularFirestoreDocument} from '@angular/fire/firestore';
 import {map} from 'rxjs/operators';
 
@@ -17,10 +16,6 @@ export class ArmeService {
   constructor(private db: AngularFirestore, private messageService: MessageService) { }
 
   getArmes(): Observable<Arme[]> {
-/*
-    this.messageService.add('ArmeService: fetched armes');
-*/
-
     return this.db.collection<Arme>(ArmeService.url)
       .snapshotChanges()
       .pipe(
@@ -39,15 +34,12 @@ export class ArmeService {
   }
 
   getArme(id: string): Observable<Arme> {
-
     // Return arme observable
     return this.getArmeDocument(id).snapshotChanges()
       .pipe(
         map(item => {
-
           // Get document data
           const data = item.payload.data();
-
           // New Arme
           const arme = new Arme().fromJSON(data);
           arme.id = id;
@@ -62,10 +54,11 @@ export class ArmeService {
   addArme(arme: Arme) {
     this.db.collection<Arme>(ArmeService.url).add(Object.assign({}, arme));
   }
-
+  // Modifier une arme
   updateArme(arme: Arme, updateArme: Arme) {
     this.db.doc<Arme>(ArmeService.url + `/` + arme.id).update(Object.assign({}, updateArme));
   }
+  // Supprimer une arme
   deleteArme(id: string) {
     this.db.doc<Arme>(ArmeService.url + `/` + id).delete();
   }

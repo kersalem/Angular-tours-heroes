@@ -23,11 +23,13 @@ export class ArmeDetailComponent implements OnInit {
   ngOnInit(): void {
     this.getArme();
   }
+  // Obtenir infos arme en fonction de son id
   getArme(): void {
     const id = this.route.snapshot.paramMap.get('id');
     this.armeService.getArme(id)
       .subscribe(arme => this.arme = arme);
   }
+  // Retour url précédente
   goBack(): void {
     this.location.back();
   }

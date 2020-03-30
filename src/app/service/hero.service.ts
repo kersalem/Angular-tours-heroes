@@ -1,14 +1,9 @@
 import { Injectable } from '@angular/core';
-
 import { Observable, of } from 'rxjs';
-
 import { Hero } from '../data/hero';
-import { Arme } from '../data/arme';
 import {MessageService} from './message.service';
-
-import {AngularFirestore, DocumentChangeAction} from '@angular/fire/firestore';
+import {AngularFirestore} from '@angular/fire/firestore';
 import { AngularFirestoreDocument } from '@angular/fire/firestore';
-import { AngularFirestoreCollection } from '@angular/fire/firestore';
 import {map} from 'rxjs/operators';
 
 
@@ -28,8 +23,6 @@ export class HeroService {
       .snapshotChanges()
       .pipe(
         map(liste => {
-          // this.messageService.add('HeroService: Voici la liste des héros');
-
           // Traitement de la liste
           return liste.map(item => {
 
@@ -57,17 +50,13 @@ export class HeroService {
     return this.getHeroDocument(id).snapshotChanges()
       .pipe(
         map(item => {
-
           // Get document data
           const data = item.payload.data();
-
           // New Hero
           const hero = new Hero().fromJSON(data);
           hero.id = id;
-
           // log
           console.log('getHero(' + id + ')');
-
           // Use spread operator to add the id to the document data
           return hero;
         })
