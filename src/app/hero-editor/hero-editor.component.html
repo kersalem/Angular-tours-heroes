@@ -27,6 +27,7 @@
                   [ngModel]="(getHero) ? getHero.attaque : 1 "
                   formControlName="attaque"
                   class="form-control"
+                  min="1"
                   (change)="limitNumber()">
               <p *ngIf="armeHero" style="color: grey;">+ {{ armeHero.attaque }} avec l'arme {{ armeHero.name }}</p>
               <div class="alert alert-danger" *ngIf="attaque.value <1 || attaque.value >37">
@@ -40,6 +41,7 @@
                   type="number"
                   [ngModel]="(getHero) ? getHero.esquive : 1 "
                   formControlName="esquive"
+                  min="1"
                   class="form-control"
                   (change)="limitNumber()">
               <p *ngIf="armeHero" style="color: grey;">+ {{ armeHero.esquive }} avec l'arme {{ armeHero.name }}</p>
@@ -54,6 +56,7 @@
                 type="number"
                 [ngModel]="(getHero) ? getHero.degats : 1 "
                 formControlName="degats"
+                min="1"
                 class="form-control"
                 (change)="limitNumber()"
               >
@@ -67,6 +70,7 @@
               <input
                 #pointDeVie
                 type="number"
+                min="1"
                 [ngModel]="(getHero) ? getHero.pointDeVie : 1 "
                 formControlName="pointDeVie"
                 class="form-control"
