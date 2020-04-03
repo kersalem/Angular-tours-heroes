@@ -62,7 +62,7 @@ export class HeroService {
         })
       );
   }
-  // Ajout d'un hÃ©ro
+  // Ajout d'un héro
   addHero(hero: Hero) {
     this.db.collection<Hero>(HeroService.url).add(Object.assign({}, hero));
   }
@@ -71,13 +71,13 @@ export class HeroService {
     this.db.doc<Hero>(HeroService.url + `/` + hero.id).update(Object.assign({}, updateHero));
   }
 
-  // Suppression d'un hÃ©ro
+  // Suppression d'un hero
   deleteHero(id: string) {
     // Delete the document
     this.db.doc<Hero>(HeroService.url + `/` + id).delete();
 
   }
-  // Création du service Firebase en fonction de l'id du hÃ©ro
+  // Création du service Firebase en fonction de l'id du hero
   private getHeroDocument(id: string): AngularFirestoreDocument<Hero> {
 
     // return document

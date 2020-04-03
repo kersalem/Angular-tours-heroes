@@ -49,7 +49,7 @@ export class ArmesComponent implements OnInit {
   saisiesFilter(event) {
     this.armeFilter = [];
     for (const armeF of this.armes) {
-      if (armeF.name.indexOf(event.value) === 0) {
+      if (armeF.name.toLowerCase().indexOf(event.value.toLowerCase()) === 0) {
         this.armeFilter.push(armeF);
       }
     }

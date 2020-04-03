@@ -32,7 +32,6 @@ export class HeroDetailComponent implements OnInit {
     this.heroService.getHero(id)
       .subscribe(hero => {
         this.hero = hero;
-        console.log(' this.armeeeeeeee',  this.arme);
         this.getArmeHero(this.hero.id_arme);
       });
   }

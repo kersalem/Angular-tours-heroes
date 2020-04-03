@@ -54,7 +54,7 @@ export class HeroesComponent implements OnInit {
   saisiesFilter(event) {
     this.heroFilter = [];
     for (const heroF of this.heroes) {
-      if (heroF.name.indexOf(event.value) === 0) {
+      if (heroF.name.toLowerCase().indexOf(event.value.toLowerCase()) === 0) {
         this.heroFilter.push(heroF);
       }
     }

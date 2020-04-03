@@ -28,8 +28,10 @@
                   formControlName="attaque"
                   class="form-control"
                   min="1"
+                  max="37"
                   (change)="limitNumber()">
-              <p *ngIf="armeHero" style="color: grey;">+ {{ armeHero.attaque }} avec l'arme {{ armeHero.name }}</p>
+              <p *ngIf="armeHero && armeHero.attaque > 0" style="color: grey;">+ {{ armeHero.attaque }} point(s) si vous choisissez l'arme : {{ armeHero.name }}</p>
+              <p *ngIf="armeHero && armeHero.attaque <= 0" style="color: grey;"> {{ armeHero.attaque }} point(s) si vous choisissez l'arme : {{ armeHero.name }}</p>
               <div class="alert alert-danger" *ngIf="attaque.value <1 || attaque.value >37">
                 Attaque entre 1 et 37.
               </div>
@@ -42,9 +44,11 @@
                   [ngModel]="(getHero) ? getHero.esquive : 1 "
                   formControlName="esquive"
                   min="1"
+                  max="37"
                   class="form-control"
                   (change)="limitNumber()">
-              <p *ngIf="armeHero" style="color: grey;">+ {{ armeHero.esquive }} avec l'arme {{ armeHero.name }}</p>
+              <p *ngIf="armeHero && armeHero.esquive > 0" style="color: grey;">+ {{ armeHero.esquive }} point(s) si vous choisissez l'arme : {{ armeHero.name }}</p>
+              <p *ngIf="armeHero && armeHero.esquive <= 0" style="color: grey;"> {{ armeHero.esquive }} point(s) si vous choisissez l'arme : {{ armeHero.name }}</p>
               <div class="alert alert-danger" *ngIf="esquive.value <1 || esquive.value >37">
                 Esquive entre 1 et 37.
               </div>
@@ -57,10 +61,12 @@
                 [ngModel]="(getHero) ? getHero.degats : 1 "
                 formControlName="degats"
                 min="1"
+                max="37"
                 class="form-control"
                 (change)="limitNumber()"
               >
-              <p *ngIf="armeHero" style="color: grey;">+ {{ armeHero.degats }} avec l'arme {{ armeHero.name }}</p>
+              <p *ngIf="armeHero && armeHero.degats > 0" style="color: grey;">+ {{ armeHero.degats }} point(s) si vous choisissez l'arme : {{ armeHero.name }}</p>
+              <p *ngIf="armeHero && armeHero.degats <= 0" style="color: grey;"> {{ armeHero.degats }} point(s) si vous choisissez l'arme : {{ armeHero.name }}</p>
               <div class="alert alert-danger" *ngIf="degats.value <1 || degats.value >37">
                 Dégâts entre 1 et 37.
               </div>
@@ -71,18 +77,20 @@
                 #pointDeVie
                 type="number"
                 min="1"
+                max="37"
                 [ngModel]="(getHero) ? getHero.pointDeVie : 1 "
                 formControlName="pointDeVie"
                 class="form-control"
                 (change)="limitNumber()">
-              <p *ngIf="armeHero" style="color: grey;"><b>+</b> {{ armeHero.pointDeVie }} avec l'arme {{ armeHero.name }}</p>
+              <p *ngIf="armeHero && armeHero.pointDeVie > 0" style="color: grey;">+ {{ armeHero.pointDeVie }} point(s) si vous choisissez l'arme : {{ armeHero.name }}</p>
+              <p *ngIf="armeHero && armeHero.pointDeVie <= 0" style="color: grey;"> {{ armeHero.pointDeVie }} point(s) si vous choisissez l'arme : {{ armeHero.name }}</p>
               <div class="alert alert-danger" *ngIf="pointDeVie.value <1 || pointDeVie.value >37">
                 Point de vie entre 1 et 37..
               </div>
             </div>
             <div class="form-group"> Choisir son arme :
               <select class="form-control" formControlName="arme" [ngModel]="(getHero) ? getHero.id_arme : ''" (change)="getArmeCaracteristiques($event.target)">
-                <option  [value]="''"></option>
+                <option [value]="''"></option>
                 <option *ngFor="let arme of armes" [value]="arme.id">{{ arme.name }}</option>
               </select>
             </div>
